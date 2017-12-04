@@ -8,9 +8,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>index</title>
   </head>
   <body>
-  $END$
+  <h1>
+    欢迎使用酒店信息管理系统
+  </h1>
+  <br>
+
+  <form action = "basicSetting/Login.jsp" method="get">
+    <input type = "submit" value= "基础设置"/>
+  </form>
+
+  <form action="/bookOnline/Login.jsp" method="get">
+    <input type = "submit" value = "在线预订" />
+  </form>
+
+  <form action = "receptionManagement/Login.jsp" method="get">
+    <input type = "submit" value= "前台管理"/>
+  </form>
+
+  <form action = "roomManagement/Login.jsp" method="get">
+    <input type = "submit" value= "客房管理"/>
+  </form>
+
   </body>
 </html>
