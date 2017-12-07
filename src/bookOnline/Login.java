@@ -1,5 +1,9 @@
 package bookOnline;
 
+import DBHelper.CustomerDBH;
+import DBHelper.DBHInitialize;
+import entity.Customer;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,17 +12,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.*;
+import java.util.Vector;
 
 @WebServlet("/bookOnline/Login.do")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nameCustomerLogin = request.getParameter("nameCustomerLogin");
-        String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
+        boolean find = false;
+        /*
+        * 创建时间：12.7
+        * 暂时不对数据库表进行设计，简单地将所有属性放在一个表中进行处理
+        */
+        //setup DB connection
+        Connection conn;
 
-        if (nameCustomerLogin.equals(passwordCustomerLogin)) {
-            RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");
-            rd.forward(request, response);
-        } else {
+        try {
+            conn = DBHInitialize.getConnection();
+            CustomerDBH helper = new CustomerDBH(conn);
+
+            String sql = "select * from Customer where username = ?";
+            helper.setUsername(request.getParameter("nameCustomerLogin"));
+            ResultSet res = helper.Query(sql);
+
+            String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
+
+            while (res.next()) {
+                String resPassword = res.getString("password");
+                boolean passwordIsRight = passwordCustomerLogin.equals(resPassword);
+                if (passwordIsRight) {
+                    Customer customer = new Customer(res);
+                    customer.LoginInitialize(request, response);
+                    find = true;
+                    RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");
+                    rd.forward(request, response);
+                }
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (!find) {
             RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginFail.jsp");
             rd.forward(request, response);
         }

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="LoginCheck.jsp"%>
+<%--<%@include file="LoginCheck.jsp"%>--%>
 <html>
 <head>
     <title>bookOnlineIndex</title>

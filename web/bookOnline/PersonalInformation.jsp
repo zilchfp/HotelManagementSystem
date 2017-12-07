@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.Customer" %><%--
   Created by IntelliJ IDEA.
   User: zilchfp
   Date: 17-12-4
@@ -16,6 +16,10 @@
 </h1>
 
 姓名：
+<%
+    Customer customer = (Customer) session.getAttribute("customer");
+    System.out.println(customer.getUsername());
+%>
 <br>
 
 性别：
