@@ -4,6 +4,7 @@ import DBHelper.CustomerDBH;
 import DBHelper.DBHInitialize;
 import entity.Customer;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +19,19 @@ import java.util.Vector;
 @WebServlet("/bookOnline/Login.do")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean find = false;
+
         /*
         * 创建时间：12.7
         * 暂时不对数据库表进行设计，简单地将所有属性放在一个表中进行处理
         */
         //setup DB connection
+
+        boolean findCustomer = false;
         Connection conn;
+        HttpSession session = request.getSession();
 
         try {
+            //数据库查询
             conn = DBHInitialize.getConnection();
             CustomerDBH helper = new CustomerDBH(conn);
 
@@ -36,13 +41,15 @@ public class Login extends HttpServlet {
 
             String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
 
+            //查询结果处理
             while (res.next()) {
                 String resPassword = res.getString("password");
                 boolean passwordIsRight = passwordCustomerLogin.equals(resPassword);
                 if (passwordIsRight) {
                     Customer customer = new Customer(res);
+                    session.setAttribute("customer",customer);
                     customer.LoginInitialize(request, response);
-                    find = true;
+                    findCustomer = true;
                     RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");
                     rd.forward(request, response);
                 }
@@ -51,7 +58,7 @@ public class Login extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (!find) {
+        if (!findCustomer) {
             RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginFail.jsp");
             rd.forward(request, response);
         }

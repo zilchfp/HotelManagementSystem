@@ -14,5 +14,16 @@
 <h1>
     前台管理
 </h1>
+
+<form action="" method="get" >
+    <input type="submit" value="预定入住">
+    <br>
+</form>
+
+<form action="Checkout.jsp" method="get" >
+    <input type="submit" value="退房管理">
+    <br>
+</form>
+
 </body>
 </html>

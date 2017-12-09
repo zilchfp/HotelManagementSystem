@@ -36,6 +36,9 @@ public class CustomerDBH {
         return res;
     }
 
+    public void showOrder() {
+
+    }
 
     private Vector<String> getAttributeList() {
         Vector<String> attributeList;
@@ -46,6 +49,9 @@ public class CustomerDBH {
         attributeList.add(this.IDNumber);
         return attributeList;
     }
+
+
+
 
 
     //GETTER AND SETTER

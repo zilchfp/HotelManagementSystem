@@ -15,17 +15,18 @@
     个人信息
 </h1>
 
-姓名：
+ID：${sessionScope.customer.userID}
+
 <%
     Customer customer = (Customer) session.getAttribute("customer");
     System.out.println(customer.getUsername());
 %>
 <br>
 
-性别：
+姓名：${sessionScope.customer.username}
 <br>
 
-身份证号：
+身份证号：${sessionScope.customer.IDNumber}
 <br>
 
 </body>
