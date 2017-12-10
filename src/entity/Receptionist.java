@@ -5,6 +5,7 @@ import DBHelper.RoomDBH;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Random;
 
 public class Receptionist {
     private String ID;
@@ -17,6 +18,9 @@ public class Receptionist {
         RoomDBH helper = new RoomDBH(c);
         helper.checkout(roomID);
     }
+
+    //PRIVATE MEMBER
+
 
 
     //GETTER AND SETTER

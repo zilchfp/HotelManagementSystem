@@ -20,8 +20,4 @@ public class DBHGeneral {
                 "user=javaweb&password=password");
         return c;
     }
-
-    public void close(Connection c) throws SQLException {
-        c.close();
-    }
 }

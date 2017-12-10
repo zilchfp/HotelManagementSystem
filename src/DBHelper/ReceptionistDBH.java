@@ -27,7 +27,15 @@ public class ReceptionistDBH {
         PreparedStatement stm = connection.prepareStatement(sql);
         QueryHelper.addStrings(stm, attributeList);
         stm.execute();
+    }
 
+    public void Modify(String ReceptionistID) throws SQLException {
+        this.setID(ReceptionistID);
+        Vector<String> attributeList = getAttributeList();
+        String sql = "delete from Receptionist where ID = ?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        QueryHelper.addStrings(stm, attributeList);
+        stm.execute();
     }
 
 

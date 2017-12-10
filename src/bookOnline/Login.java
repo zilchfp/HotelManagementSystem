@@ -17,29 +17,19 @@ import java.sql.*;
 @WebServlet("/bookOnline/Login.do")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        /*
-        * 创建时间：12.7
-        * 暂时不对数据库表进行设计，简单地将所有属性放在一个表中进行处理
-        */
-        //setup DB connection
-
         boolean findCustomer = false;
         Connection conn;
         HttpSession session = request.getSession();
 
         try {
+            String username = request.getParameter("nameCustomerLogin");
             //数据库查询
             conn = DBHGeneral.getConnection();
             CustomerDBH helper = new CustomerDBH(conn);
-
-            String sql = "select * from Customer where username = ?";
-            helper.setUsername(request.getParameter("nameCustomerLogin"));
-            ResultSet res = helper.Query(sql);
-
-            String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
+            ResultSet res = helper.QueryByUsername(username);
 
             //查询结果处理
+            String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
             while (res.next()) {
                 String resPassword = res.getString("password");
                 boolean passwordIsRight = passwordCustomerLogin.equals(resPassword);

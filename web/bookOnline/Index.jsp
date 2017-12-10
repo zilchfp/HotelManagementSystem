@@ -17,12 +17,12 @@
 
 <form action="PersonalInformation.jsp" method="get" >
     <input type="submit" value="账户信息查询">
-    <br>
 </form>
+
 <br>
+
 <form action="RoomQuery.jsp" method="get" >
     <input type="submit" value="酒店空房查询">
-    <br>
 </form>
 
 </body>

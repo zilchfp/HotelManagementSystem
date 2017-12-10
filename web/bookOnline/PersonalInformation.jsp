@@ -16,11 +16,6 @@
 </h1>
 
 ID：${sessionScope.customer.userID}
-
-<%
-    Customer customer = (Customer) session.getAttribute("customer");
-    System.out.println(customer.getUsername());
-%>
 <br>
 
 姓名：${sessionScope.customer.username}

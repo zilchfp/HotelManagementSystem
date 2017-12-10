@@ -54,7 +54,7 @@ public class RoomDBH {
     }
 
 
-    //Database Operations
+    //增删查改
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
         return QueryHelper.getResult(connection, attributeList, sql);

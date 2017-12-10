@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: zilchfp
   Date: 17-12-10
-  Time: 上午11:28
+  Time: 上午11:31
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,16 +12,12 @@
 </head>
 <body>
 <h1>
-    账号设置
+    客户账号删除
 </h1>
-
-<form action="CustomerSetting.jsp" method="get" >
-    <input type="submit" value="客户账号管理">
-    <br>
-</form>
-
-<form action="ReceptionistSetting.jsp" method="get" >
-    <input type="submit" value="接待员账号管理">
+请输入要删除的客户账号ID:
+<form action="/basicSetting/CustomerAccountDelete.do" method="post" >
+    ID: <input type="text" size="10" name="customerIDDelete" required/>
+    <input type="submit" value="提交">
     <br>
 </form>
 </body>

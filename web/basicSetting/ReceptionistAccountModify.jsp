@@ -17,6 +17,8 @@
 请输入要修改的接待员账号ID:
 <form action="/basicSetting/ReceptionistAccountModify.do" method="post" >
     ID: <input type="text" size="10" name="receptionistIDDelete" required>
+    姓名: <input type="text" size="10" name="receptionistIDDelete" required>
+    性别: <input type="text" size="10" name="receptionistIDDelete" required>
     <input type="submit" value="提交">
     <br>
 </form>

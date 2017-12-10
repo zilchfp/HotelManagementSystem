@@ -15,7 +15,7 @@
     账号设置
 </h1>
 
-<form action="" method="get" >
+<form action="CustomerSetting.jsp" method="get" >
     <input type="submit" value="客户账号管理">
     <br>
 </form>

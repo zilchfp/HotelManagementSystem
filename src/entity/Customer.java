@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 public class Customer {
 //    private static String userID;
@@ -23,7 +24,15 @@ public class Customer {
         this.username = res.getString("username");
         this.password = res.getString("password");
         this.IDNumber = res.getString("IDNumber");
-        System.out.println("create succss");
+    }
+
+    public Customer(String username,String  password,String IDNumber) {
+        // TODO
+        //这里生成的ID有可能与原数据库的的ID冲突，这里因为选的是long产生的随机ID，所以在数据较小的情况下暂时没有问题
+        this.userID = GeneralHelp.getRandomUserID();
+        this.username = username;
+        this.password = password;
+        this.IDNumber = IDNumber;
     }
 
 
@@ -35,6 +44,8 @@ public class Customer {
     }
 
 
+
+    //PRIVATE MEMBER
 
 
     //getter and setter

@@ -20,7 +20,7 @@
     <input type = "submit" value= "基础设置"/>
   </form>
 
-  <form action="/bookOnline/Login.jsp" method="get">
+  <form action="bookOnline/Login.jsp" method="get">
     <input type = "submit" value = "在线预订" />
   </form>
 

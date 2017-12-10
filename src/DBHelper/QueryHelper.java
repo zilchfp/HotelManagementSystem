@@ -15,12 +15,18 @@ public class QueryHelper {
         return res;
     }
 
+    public static void execute(Connection connection, Vector<String> attributeList, String sql) throws SQLException {
+        PreparedStatement stm = connection.prepareStatement(sql);
+        QueryHelper.addStrings(stm, attributeList);
+        stm.execute();
+    }
+
     public static void addStrings(PreparedStatement stm, Vector<String> attributeList) throws SQLException {
         int cnt = 1;
         for (int i = 0; i < attributeList.size(); i++) {
             String s = attributeList.elementAt(i);
             if (s != null) {
-                System.out.println("i:"+i+" cnt :" + cnt + " s:" + s);
+                System.out.println("i:"+i+" cnt :" + cnt + " attribute changed:" + s);
                 stm.setString(cnt,s);
                 cnt++;
             }
