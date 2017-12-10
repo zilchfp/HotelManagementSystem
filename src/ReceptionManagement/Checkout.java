@@ -1,7 +1,6 @@
 package ReceptionManagement;
 
-import DBHelper.DBHInitialize;
-import DBHelper.ReceptionistDBH;
+import DBHelper.DBHGeneral;
 import DBHelper.RoomDBH;
 import entity.Receptionist;
 
@@ -13,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static java.lang.System.out;
 
 @WebServlet("/ReceptionManagemnt/Checkout.do")
 public class Checkout extends HttpServlet {
@@ -27,6 +29,29 @@ public class Checkout extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //检查是否退房成功
+        try {
+            Connection c = DBHGeneral.getConnection();
+            RoomDBH helper = new RoomDBH(c);
+            helper.setID(roomID);
+            String sql = "select * from Room where ID=?";
+            ResultSet res = helper.Query(sql);
+            while (res.next()) {
+                if (res.getString("status").equals("AVALIABLE")) {
+                    out.println("checkout successfuley");
+
+                    //TO DO
+                    //
+
+                } else {
+                    out.println("checkout fail");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

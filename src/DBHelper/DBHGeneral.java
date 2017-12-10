@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBHInitialize {
+public class DBHGeneral {
     public static Connection getConnection () throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();

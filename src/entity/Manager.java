@@ -9,6 +9,12 @@ public class Manager {
     private String name;
     private String gender;
 
+    public void addRoom() {
+
+    }
+    public void deleteRoom() {
+
+    }
 
     public void addReceptionist() {
 

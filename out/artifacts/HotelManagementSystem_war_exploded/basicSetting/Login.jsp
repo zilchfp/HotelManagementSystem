@@ -15,7 +15,7 @@
     基础设置
 </h1>
 经理账户登录：
-<form action="" method="post">
+<form action="Index.jsp" method="post">
     <table>
         <tr><td>用户名：</td>
             <td><input type="text" name="username"/></td>

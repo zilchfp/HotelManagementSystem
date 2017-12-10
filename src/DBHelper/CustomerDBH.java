@@ -22,18 +22,7 @@ public class CustomerDBH {
 
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = getAttributeList();
-        PreparedStatement stm = connection.prepareStatement(sql);
-        int cnt = 1;
-        for (int i = 0; i < attributeList.size(); i++) {
-            String s = attributeList.elementAt(i);
-            System.out.println("i:"+i+" cnt :" + cnt + " s:" + s);
-            if (s != null) {
-                stm.setString(cnt,s);
-                cnt++;
-            }
-        }
-        ResultSet res = stm.executeQuery();
-        return res;
+        return QueryHelper.getResult(connection, attributeList, sql);
     }
 
     public void showOrder() {

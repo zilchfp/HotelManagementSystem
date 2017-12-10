@@ -7,11 +7,6 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class ReceptionistDBH {
-    private String ID;
-    private String name;
-    private String gender;
-    private Connection connection;
-
     public ReceptionistDBH(Connection c) {
         //拓展性不好，当属性数量增长时，容易代码膨胀
         this.connection = c;
@@ -22,19 +17,26 @@ public class ReceptionistDBH {
 
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = getAttributeList();
-        PreparedStatement stm = connection.prepareStatement(sql);
-        int cnt = 1;
-        for (int i = 0; i < attributeList.size(); i++) {
-            String s = attributeList.elementAt(i);
-            System.out.println("i:"+i+" cnt :" + cnt + " s:" + s);
-            if (s != null) {
-                stm.setString(cnt,s);
-                cnt++;
-            }
-        }
-        ResultSet res = stm.executeQuery();
-        return res;
+        return QueryHelper.getResult(connection, attributeList, sql);
     }
+
+    public void Delete(String ReceptionistID) throws SQLException {
+        this.setID(ReceptionistID);
+        Vector<String> attributeList = getAttributeList();
+        String sql = "delete from Receptionist where ID = ?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        QueryHelper.addStrings(stm, attributeList);
+        stm.execute();
+
+    }
+
+
+    //PRIVATE MEMBERS
+    private String ID;
+    private String name;
+    private String gender;
+    private Connection connection;
+
 
     private Vector<String> getAttributeList() {
         Vector<String> attributeList;
@@ -45,7 +47,7 @@ public class ReceptionistDBH {
         return attributeList;
     }
 
-
+    //GETTER AND SETTER
     public String getID() {
         return ID;
     }

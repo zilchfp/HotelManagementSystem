@@ -1,10 +1,9 @@
 package bookOnline;
 
 import DBHelper.CustomerDBH;
-import DBHelper.DBHInitialize;
+import DBHelper.DBHGeneral;
 import entity.Customer;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Vector;
 
 @WebServlet("/bookOnline/Login.do")
 public class Login extends HttpServlet {
@@ -32,7 +30,7 @@ public class Login extends HttpServlet {
 
         try {
             //数据库查询
-            conn = DBHInitialize.getConnection();
+            conn = DBHGeneral.getConnection();
             CustomerDBH helper = new CustomerDBH(conn);
 
             String sql = "select * from Customer where username = ?";

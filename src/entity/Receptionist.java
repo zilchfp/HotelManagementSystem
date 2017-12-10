@@ -1,13 +1,9 @@
 package entity;
 
-import DBHelper.DBHInitialize;
+import DBHelper.DBHGeneral;
 import DBHelper.RoomDBH;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Receptionist {
@@ -17,7 +13,7 @@ public class Receptionist {
 
 
     public void roomCheckout(String roomID) throws SQLException {
-        Connection c = DBHInitialize.getConnection();
+        Connection c = DBHGeneral.getConnection();
         RoomDBH helper = new RoomDBH(c);
         helper.checkout(roomID);
     }
