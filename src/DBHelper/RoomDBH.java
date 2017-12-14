@@ -1,5 +1,7 @@
 package DBHelper;
 
+import entity.Room;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +49,7 @@ public class RoomDBH {
 
 
 
+    //退房
     public void checkout(String roomID) throws SQLException {
         String sql = " update Room set status='AVALIABLE' where ID=?";
         this.setID(roomID);
@@ -58,6 +61,24 @@ public class RoomDBH {
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
         return QueryHelper.getResult(connection, attributeList, sql);
+    }
+    public Room roomQuery(String roomID) throws SQLException {
+        String sql = "select * from Room where ID=?";
+        this.setID(roomID);
+        ResultSet res = this.Query(sql);
+        Room resultRoom = new Room();
+        while(res.next()) {
+            resultRoom.setID(res.getString(1));
+            resultRoom.setNumber(res.getString(2));
+            resultRoom.setType(res.getString(3));
+            resultRoom.setFloor(res.getString(4));
+            resultRoom.setDirection(res.getString(5));
+            resultRoom.setDescription(res.getString(6));
+            resultRoom.setStatus(res.getString(7));
+        }
+
+        return resultRoom;
+
     }
 
     public void Update(String sql) throws SQLException {

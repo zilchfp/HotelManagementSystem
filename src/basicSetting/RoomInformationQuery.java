@@ -1,8 +1,9 @@
-package bookOnline;
+package basicSetting;
 
-import DBHelper.CustomerDBH;
 import DBHelper.DBHGeneral;
+import DBHelper.RoomDBH;
 import entity.Customer;
+import entity.Room;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,37 +11,32 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import static java.lang.System.out;
 
-@WebServlet(name = "Register",urlPatterns = "/bookOnline/Register.do")
-public class Register extends HttpServlet {
+@WebServlet("/basicSetting/RoomInformationQuery.do")
+public class RoomInformationQuery extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String customerName = request.getParameter("customerName");
-        String customerID = request.getParameter("customerID");
-        String customerPassword = request.getParameter("customerPassword");
-
+        HttpSession session = request.getSession();
+        String IDOfSettingRoom = request.getParameter("IDOfSettingRoom");
         try {
             Connection connection = DBHGeneral.getConnection();
-            CustomerDBH customerDBH = new CustomerDBH(connection);
-
-            Customer customer = new Customer(customerName, customerPassword, customerID);
-            customerDBH.AddCustomer(customer);
-
+            RoomDBH helper = new RoomDBH(connection);
+            Room resRoom = helper.roomQuery(IDOfSettingRoom);
+            session.setAttribute("resultRoomOfSetting",resRoom);
             connection.close();
 
-            out.println("注册成功");
-            RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/RegisterSuccess.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/basicSetting/RoomInformationSetting.jsp");
             rd.forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
+        out.print(IDOfSettingRoom);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

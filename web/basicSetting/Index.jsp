@@ -24,7 +24,7 @@
     <input type="submit" value="客房类型设置">
     <br>
 </form>
-<form action="" method="" >
+<form action="RoomInformationSettingID.jsp" method="get" >
     <input type="submit" value="客房信息设置">
     <br>
 </form>

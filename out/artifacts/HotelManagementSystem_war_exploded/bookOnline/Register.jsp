@@ -9,14 +9,15 @@
 </h1>
 <form action = "/bookOnline/Register.do" method = "post">
 
-    姓名：<input type = "text" size = "20" name = "customerName" />
+    姓名：<input type = "text" size = "20" name = "customerName" required/>
     <br>
     <br>
-    性别：<input type = "radio" name = "customerGender" value="male" /> 男
-         <input type = "radio" name = "customerGender" value="female" /> 女
+    <%--性别：<input type = "radio" name = "customerGender" value="male" /> 男--%>
+         <%--<input type = "radio" name = "customerGender" value="female" /> 女--%>
+    密码：<input type = "text" size = "20" name = "customerPassword" required/>
     <br>
     <br>
-    身份证号码：<input type = "text" size = "30" name = "customerID" />
+    身份证号码：<input type = "text" size = "30" name = "customerID" required/>
     <br>
     <br>
     <input type = "submit"  value="注册账号"/>
