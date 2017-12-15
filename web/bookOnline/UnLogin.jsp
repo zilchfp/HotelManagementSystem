@@ -15,7 +15,7 @@
     您尚未登录！请登录后再进行操作，3秒后跳转回登录界面......
 </h1>
 <%
-    response.setHeader("Refresh","3; URL = /bookOnline/Login.jsp");
+    response.setHeader("Refresh","3; URL = /bookOnline/ManagerLogin.jsp");
 %>
 
 

@@ -1,36 +1,65 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zilchfp
-  Date: 17-12-4
-  Time: 下午6:51
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>index</title>
-  </head>
-  <body>
-  <h1>
-    欢迎使用酒店信息管理系统
-  </h1>
-  <br>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+  <title>MDUI | Material Design 样式的响应式前端框架</title>
+  <link rel="stylesheet" href="./MDUI_files/mdui.min.css">
+  <link rel="stylesheet" href="./MDUI_files/style.css">
+  <script src="https://hm.baidu.com/hm.js?33d719afc3e48d8a2fbdd886b164d2e4"></script><script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?33d719afc3e48d8a2fbdd886b164d2e4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+  </script><style></style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+  .en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+  }
 
-  <form action = "basicSetting/Login.jsp" method="get">
-    <input type = "submit" value= "基础设置"/>
-  </form>
+  .en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+  }
+  </style></head>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-loaded" style="">
 
-  <form action="bookOnline/Login.jsp" method="get">
-    <input type = "submit" value = "在线预订" />
-  </form>
+<!-- 首屏 -->
+<div class="main-section mdui-color-theme">
+  <div class="mdui-container main-container">
+    <h2>
+      <br>
+      <span class="mdui-text-color-theme-accent"></span>Hotel <span class="mdui-text-color-theme-accent"></span>Management <span class="mdui-text-color-theme-accent"></span>System
+    </h2>
 
-  <form action = "receptionManagement/Login.jsp" method="get">
-    <input type = "submit" value= "前台管理"/>
-  </form>
+    <h4>酒店信息管理系统</h4>
 
-  <form action = "roomManagement/Login.jsp" method="get">
-    <input type = "submit" value= "客房管理"/>
-  </form>
+    <div class="main-btn-wrapper">
+      <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >经理登录</a>
+      <a href="ReceptionistLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >接待员登录</a>
+      <a href="CustomerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white">客户登录</a>
+    </div>
+  </div>
+</div>
 
-  </body>
-</html>
+<script src="./MDUI_files/mdui.min.js"></script>
+<script>
+    var $$ = mdui.JQ;
+
+    $$(function () {
+        // appbar 自动隐藏
+        var $appbar = $$('.mdui-appbar');
+        $$(window).on('scroll', function () {
+            $appbar[document.body.scrollTop === 0 ? 'addClass' : 'removeClass']('mdui-shadow-0');
+        });
+    });
+
+</script></body></html>

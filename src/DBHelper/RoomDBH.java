@@ -1,5 +1,6 @@
 package DBHelper;
 
+import entity.GeneralHelp;
 import entity.Room;
 
 import java.sql.Connection;
@@ -58,6 +59,16 @@ public class RoomDBH {
 
 
     //增删查改
+    //增
+    public boolean addRoom() throws SQLException {
+        String sql = "insert into Room values (?,?,?,?,?,?,?);";
+        this.setID(GeneralHelp.getRandomUserID());
+        Vector<String> attributeList = this.getAttributeList();
+        PreparedStatement stm = connection.prepareStatement(sql);
+        QueryHelper.addStrings(stm, attributeList);
+        stm.executeUpdate();
+        return true;
+    }
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
         return QueryHelper.getResult(connection, attributeList, sql);

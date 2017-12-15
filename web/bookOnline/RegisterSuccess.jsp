@@ -15,7 +15,7 @@
     注册成功！3秒后跳转至登录界面。
 </h1>
 <%
-    response.setHeader("Refresh","3; URL = /bookOnline/Login.jsp");
+    response.setHeader("Refresh","3; URL = /bookOnline/ManagerLogin.jsp");
 %>
 </body>
 </html>

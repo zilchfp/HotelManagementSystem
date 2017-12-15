@@ -20,7 +20,7 @@
                 <td><input type="submit" value="登录"/></td>
         </form>
 
-        <form action="Register.jsp" method="get">
+        <form action="bookOnline/Register.jsp" method="get">
                 <td><input type="submit" value="注册"/></td>
         </form>
         </tr>

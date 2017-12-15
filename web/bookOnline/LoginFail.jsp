@@ -15,7 +15,7 @@
     登录失败！用户名或密码错误！3秒后跳转回登录界面......
 </h1>
 <%
-    response.setHeader("Refresh","3; URL = /bookOnline/Login.jsp");
+    response.setHeader("Refresh","3; URL = /bookOnline/ManagerLogin.jsp");
 %>
 
 
