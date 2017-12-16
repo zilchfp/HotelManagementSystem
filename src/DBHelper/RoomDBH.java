@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import static java.lang.System.out;
-
 public class RoomDBH {
     private String ID;
     private String number;
@@ -60,18 +58,27 @@ public class RoomDBH {
 
     //增删查改
     //增
-    public boolean addRoom() throws SQLException {
+    public boolean AddRoom() throws SQLException {
         String sql = "insert into Room values (?,?,?,?,?,?,?);";
         this.setID(GeneralHelp.getRandomUserID());
         Vector<String> attributeList = this.getAttributeList();
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
         return true;
     }
+
+    //删除
+
+
+    //查
+
+
+    //改
+
     public ResultSet Query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
-        return QueryHelper.getResult(connection, attributeList, sql);
+        return Helper.getResult(connection, attributeList, sql);
     }
     public Room roomQuery(String roomID) throws SQLException {
         String sql = "select * from Room where ID=?";
@@ -95,7 +102,7 @@ public class RoomDBH {
     public void Update(String sql) throws SQLException {
         Vector<String> attributeList = getAttributeList();
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
     }
 

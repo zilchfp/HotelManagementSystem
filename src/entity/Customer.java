@@ -1,8 +1,12 @@
 package entity;
 
+import DBHelper.CustomerDBH;
+import DBHelper.DBHGeneral;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
@@ -44,6 +48,20 @@ public class Customer {
     }
 
 
+    public void register() throws SQLException {
+        Connection connection = DBHGeneral.getConnection();
+        CustomerDBH customerDBH = new CustomerDBH(connection);
+        customerDBH.AddCustomer(this);
+        connection.close();
+    }
+
+    public void remove() throws SQLException {
+        Connection connection = DBHGeneral.getConnection();
+        String userID = this.getUserID();
+        CustomerDBH customerDBH = new CustomerDBH(connection);
+        customerDBH.DeleteByUserID(this.getUserID());
+        connection.close();
+    }
 
     //PRIVATE MEMBER
 

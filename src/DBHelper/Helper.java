@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-public class QueryHelper {
+public class Helper {
 
     public static ResultSet getResult(Connection connection, Vector<String> attributeList, String sql) throws SQLException {
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         ResultSet res = stm.executeQuery();
         return res;
     }
 
     public static void execute(Connection connection, Vector<String> attributeList, String sql) throws SQLException {
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         stm.execute();
     }
 

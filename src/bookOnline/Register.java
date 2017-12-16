@@ -24,23 +24,16 @@ public class Register extends HttpServlet {
         String customerPassword = request.getParameter("customerPassword");
 
         try {
-            Connection connection = DBHGeneral.getConnection();
-            CustomerDBH customerDBH = new CustomerDBH(connection);
-
             Customer customer = new Customer(customerName, customerPassword, customerID);
-            customerDBH.AddCustomer(customer);
-
-            connection.close();
-
-            out.println("注册成功");
-            RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/RegisterSuccess.jsp");
-            rd.forward(request, response);
-
+            customer.register();
         } catch (SQLException e) {
             e.printStackTrace();
+            out.println("注册失败");
         }
 
-
+        out.println("注册成功");
+        RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/RegisterSuccess.jsp");
+        rd.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

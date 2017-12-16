@@ -1,5 +1,7 @@
 package DBHelper;
 
+import entity.Receptionist;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,42 +18,72 @@ public class ReceptionistDBH {
     }
 
     public ResultSet Query(String sql) throws SQLException {
-        Vector<String> attributeList = getAttributeList();
-        return QueryHelper.getResult(connection, attributeList, sql);
+        Vector<String> attributeList = GetAttributeList();
+        return Helper.getResult(connection, attributeList, sql);
     }
 
     public void Delete(String ReceptionistID) throws SQLException {
         this.setID(ReceptionistID);
-        Vector<String> attributeList = getAttributeList();
+        Vector<String> attributeList = GetAttributeList();
         String sql = "delete from Receptionist where ID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         stm.execute();
     }
 
     public void Modify(String ReceptionistID) throws SQLException {
         this.setID(ReceptionistID);
-        Vector<String> attributeList = getAttributeList();
+        Vector<String> attributeList = GetAttributeList();
         String sql = "delete from Receptionist where ID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
-        QueryHelper.addStrings(stm, attributeList);
+        Helper.addStrings(stm, attributeList);
         stm.execute();
     }
+
+    //数据库的增删查改
+    //增
+    public void AddReceptionist(Receptionist receptionist) throws SQLException {
+        this.ID = receptionist.getID();
+        this.name = receptionist.getName();
+        this.gender = receptionist.getName();
+        this.username = receptionist.getUsername();
+        this.password = receptionist.getPassword();
+        String sql = "insert into Receptionist values (?,?,?,?,?)";
+        Vector<String> attributeList = GetAttributeList();
+        Helper.execute(connection, attributeList, sql);
+    }
+
+    //删
+    public void DeleteByID(String ReceptionistID) throws SQLException {
+        this.ID = ReceptionistID;
+        String sql = "delete from Receptionist where ID = ?";
+        Vector<String> attributeList = GetAttributeList();
+        Helper.execute(connection, attributeList, sql);
+
+    }
+
+    //查
+
+    //改
 
 
     //PRIVATE MEMBERS
     private String ID;
     private String name;
     private String gender;
+    private String username;
+    private String password;
     private Connection connection;
 
 
-    private Vector<String> getAttributeList() {
+    private Vector<String> GetAttributeList() {
         Vector<String> attributeList;
         attributeList = new Vector<>();
         attributeList.add(this.ID);
         attributeList.add(this.name);
         attributeList.add(this.gender);
+        attributeList.add(this.username);
+        attributeList.add(this.password);
         return attributeList;
     }
 
@@ -78,6 +110,22 @@ public class ReceptionistDBH {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Connection getConnection() {

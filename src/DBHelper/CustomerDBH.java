@@ -5,8 +5,6 @@ import entity.Customer;
 import java.sql.*;
 import java.util.Vector;
 
-import static java.lang.System.out;
-
 public class CustomerDBH {
     private String userID;
     private String username;
@@ -25,7 +23,7 @@ public class CustomerDBH {
     }
 
 
-    //增删查改
+    //数据库的增删查改操作
     //增
     public void AddCustomer(Customer c) throws SQLException {
         this.userID = c.getUserID();
@@ -34,7 +32,7 @@ public class CustomerDBH {
         this.IDNumber = c.getIDNumber();
         String sql = "insert into Customer values (?,?,?,?)";
         Vector<String> attributeList = getAttributeList();
-        QueryHelper.execute(connection, attributeList, sql);
+        Helper.execute(connection, attributeList, sql);
     }
 
     //删
@@ -42,7 +40,7 @@ public class CustomerDBH {
         this.userID = userID;
         String sql = "delete from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
-        QueryHelper.execute(connection, attributeList, sql);
+        Helper.execute(connection, attributeList, sql);
     }
 
     //查
@@ -50,13 +48,13 @@ public class CustomerDBH {
         this.username = username;
         String sql = "select * from Customer where username = ?";
         Vector<String> attributeList = getAttributeList();
-        return QueryHelper.getResult(connection, attributeList, sql);
+        return Helper.getResult(connection, attributeList, sql);
     }
     public ResultSet QueryByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "select * from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
-        return QueryHelper.getResult(connection, attributeList, sql);
+        return Helper.getResult(connection, attributeList, sql);
     }
 
     //改
@@ -82,15 +80,13 @@ public class CustomerDBH {
         stm.executeUpdate();
     }
 
-    public void Update(String sql) throws SQLException {
+
+    public void ShowOrder() {
 
     }
 
 
-    public void showOrder() {
-
-    }
-
+    //PRIVATE MEMBERS
     private Vector<String> getAttributeList() {
         Vector<String> attributeList;
         attributeList = new Vector<>();
