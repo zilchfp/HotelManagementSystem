@@ -4,6 +4,7 @@ import entity.GeneralHelp;
 import entity.Orders;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -31,7 +32,7 @@ public class OrdersDBH {
 
     //数据库的增删查改
     //增
-    public void AddOrder(Orders orders) throws SQLException {
+    public void addOrder(Orders orders) throws SQLException {
         this.OrderID = GeneralHelp.getRandomUserID();
         this.roomID = orders.getRoomID();
         this.customerID = orders.getCustomerID();
@@ -40,34 +41,73 @@ public class OrdersDBH {
         this.dateEnd = orders.getDateEnd();
         this.status = orders.getStatus();
         String sql = "insert into Orders values (?,?,?,?,?,?,?)";
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         Helper.execute(connection, attributeList, sql);
     }
 
     //删
-    public void DeleteByID(String OrdersID) throws SQLException {
+    public void deleteByID(String OrdersID) throws SQLException {
         this.OrderID = OrdersID;
         String sql = "delete from Orders where OrderID = ?";
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         Helper.execute(connection, attributeList, sql);
 
     }
 
     //查
-    public ResultSet QueryByID(String OrderID) throws SQLException {
+    public ResultSet queryByOrderID(String OrderID) throws SQLException {
         this.OrderID = OrderID;
         String sql = "select * from Orders where OrderID = ?";
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
+    public ResultSet queryByCustomerID(String customerID) throws SQLException {
+        this.customerID = customerID;
+        String sql = "select * from Orders where customerID = ?";
+        Vector<String> attributeList = getAttributeList();
+        return Helper.getResult(connection, attributeList, sql);
+    }
+
     //改
+    public void updateDateBeginByOrderID(String OrderID, String dateBegin) throws SQLException {
+        String sql = "update Orders set dateBegin=? where OrderID=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,dateBegin);
+        stm.setString(2,OrderID);
+        stm.executeUpdate();
+    }
+
+    public void updateDateEndByOrderID(String OrderID, String dateEnd) throws SQLException {
+        String sql = "update Orders set customerName=? where OrderID=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,dateEnd);
+        stm.setString(2,OrderID);
+        stm.executeUpdate();
+    }
+
+    public void updateCustomerNameByOrderID(String OrderID, String customerName) throws SQLException {
+        String sql = "update Orders set dateEnd=? where OrderID=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,customerName);
+        stm.setString(2,OrderID);
+        stm.executeUpdate();
+    }
+
+    public void updateStatusByOrderID(String OrderID, String status) throws SQLException {
+        String sql = "update Orders set status=? where OrderID=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,status);
+        stm.setString(2,OrderID);
+        stm.executeUpdate();
+    }
+
+    private void update() {
 
 
-
+    }
 
     //PRIVATE MEMBERS
-
-    private Vector<String> GetAttributeList() {
+    private Vector<String> getAttributeList() {
         Vector<String> attributeList;
         attributeList = new Vector<>();
         attributeList.add(this.OrderID);

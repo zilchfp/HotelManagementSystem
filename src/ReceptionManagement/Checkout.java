@@ -36,7 +36,7 @@ public class Checkout extends HttpServlet {
             RoomDBH helper = new RoomDBH(c);
             helper.setID(roomID);
             String sql = "select * from Room where ID=?";
-            ResultSet res = helper.Query(sql);
+            ResultSet res = helper.query(sql);
             while (res.next()) {
                 if (res.getString("status").equals("AVALIABLE")) {
                     out.println("checkout successfuley");

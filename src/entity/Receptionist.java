@@ -1,11 +1,10 @@
 package entity;
 
 import DBHelper.DBHGeneral;
+import DBHelper.OrdersDBH;
 import DBHelper.RoomDBH;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Random;
 
 public class Receptionist {
     private String ID;
@@ -15,13 +14,35 @@ public class Receptionist {
     private String password;
 
 
-
-
+    //前台管理
     public void roomCheckout(String roomID) throws SQLException {
-        Connection c = DBHGeneral.getConnection();
-        RoomDBH helper = new RoomDBH(c);
-        helper.checkout(roomID);
+        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
+        roomDBH.updateStatusByRoomID(roomID, "AVALIABLE");
+
+        //TODO SHOW BILLS
     }
+
+    public void changeRoomNumber(String roomID, String roomNumber) throws SQLException {
+        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
+        roomDBH.updateRoomNumberByRoomID(roomID, roomNumber);
+    }
+
+    public void extendCheckoutTimeByOrderID(String OrderID, String newDateEnd) throws SQLException {
+        OrdersDBH ordersDBH = new OrdersDBH(DBHGeneral.getConnection());
+        ordersDBH.updateDateEndByOrderID(OrderID, newDateEnd);
+    }
+
+    public void fixingRoomByRoomID(String roomID) throws SQLException {
+        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
+        roomDBH.updateStatusByRoomID(roomID,"FIXING");
+    }
+
+    public void fixDoneByRoomID(String roomID) throws SQLException {
+        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
+        roomDBH.updateStatusByRoomID(roomID,"AVAILABLE");
+    }
+
+
 
     //PRIVATE MEMBER
 

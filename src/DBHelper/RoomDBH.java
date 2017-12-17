@@ -10,15 +10,6 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class RoomDBH {
-    private String ID;
-    private String number;
-    private String type;
-    private String floor;
-    private String direction;
-    private String description;
-    private String status;
-    private Connection connection;
-
 
     public RoomDBH(Connection c) {
         this.ID = null;
@@ -32,8 +23,6 @@ public class RoomDBH {
     }
 
     /*
-
-
     在线浏览房间信息：可以查询酒店房间信息，按时间搜索有效空余房间—订房客户
     预订：凭借身份证号在线预订空余房间，录入入住和离店日期，房价、房间类型，一旦预订将锁定直至入住日。—订房客户
 
@@ -46,19 +35,9 @@ public class RoomDBH {
     房态统计：用表格或图形显示整个酒店房间状态，可以分客房类型、楼层朝向等进行分类查询统计。—经理
      */
 
-
-
-    //退房
-    public void checkout(String roomID) throws SQLException {
-        String sql = " update Room set status='AVALIABLE' where ID=?";
-        this.setID(roomID);
-        this.Update(sql);
-    }
-
-
     //增删查改
     //增
-    public boolean AddRoom() throws SQLException {
+    public boolean addRoom() throws SQLException {
         String sql = "insert into Room values (?,?,?,?,?,?,?);";
         this.setID(GeneralHelp.getRandomUserID());
         Vector<String> attributeList = this.getAttributeList();
@@ -72,18 +51,14 @@ public class RoomDBH {
 
 
     //查
-
-
-    //改
-
-    public ResultSet Query(String sql) throws SQLException {
+    public ResultSet query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
     public Room roomQuery(String roomID) throws SQLException {
         String sql = "select * from Room where ID=?";
         this.setID(roomID);
-        ResultSet res = this.Query(sql);
+        ResultSet res = this.query(sql);
         Room resultRoom = new Room();
         while(res.next()) {
             resultRoom.setID(res.getString(1));
@@ -99,16 +74,38 @@ public class RoomDBH {
 
     }
 
-    public void Update(String sql) throws SQLException {
+    //改
+    public void update(String sql) throws SQLException {
         Vector<String> attributeList = getAttributeList();
         PreparedStatement stm = connection.prepareStatement(sql);
         Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
     }
+    public void updateStatusByRoomID(String roomID, String status) throws SQLException {
+        String sql = " update Room set status=? where ID=?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,status);
+        stm.setString(2,roomID);
+        stm.executeUpdate();
+    }
+    public void updateRoomNumberByRoomID(String roomID, String roomNumber) throws SQLException {
+        String sql = " update Room set number=? where ID=?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,roomNumber);
+        stm.setString(2,roomID);
+        stm.executeUpdate();
+    }
 
+    //Private Member
+    private String ID;
+    private String number;
+    private String type;
+    private String floor;
+    private String direction;
+    private String description;
+    private String status;
+    private Connection connection;
 
-
-    //Private Member Function
     private Vector<String> getAttributeList() {
         Vector<String> attributeList;
         attributeList = new Vector<>();

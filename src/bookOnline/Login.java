@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
             //数据库查询
             conn = DBHGeneral.getConnection();
             CustomerDBH helper = new CustomerDBH(conn);
-            ResultSet res = helper.QueryByUsername(username);
+            ResultSet res = helper.queryByUsername(username);
 
             //查询结果处理
             String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
                 if (passwordIsRight) {
                     Customer customer = new Customer(res);
                     session.setAttribute("customer",customer);
-                    customer.LoginInitialize(request, response);
+                    customer.loginInitialize(request, response);
                     findCustomer = true;
                     RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");
                     rd.forward(request, response);

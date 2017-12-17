@@ -43,25 +43,26 @@
 
 
 <!-- 首屏 -->
-<div class="main-section mdui-color-theme">
-    <div class="mdui-container main-container">
+<div class="main-section mdui-color-theme" style="display: flex;flex-direction: column;">
+    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
         <h2>
             <br>
             经理账户登录
         </h2>
 
         <form action="basicSetting/Index.jsp" method="post">
-            <table>
+            <div class="mdui-center" style="width: 500px;">
+            <table style="justify-content: center;margin-left: auto;margin-right: auto;">
                 <tr><td>
                     用户名：
                     </td>
                     <td>
-                        <%--<input type="text" name="username"/>--%>
                         <div class="mdui-textfield">
                             <input class="mdui-textfield-input" type="text" placeholder="用户名"/>
                         </div>
                     </td>
                 </tr>
+
                 <tr><td>密&nbsp;&nbsp;码：</td>
                     <td>
                         <div class="mdui-textfield">
@@ -69,47 +70,17 @@
                         </div>
                     </td>
                 </tr>
-                <tr><td>
-                    <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">登录
-                        <div class="main-btn-wrapper">
-                            <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>
-                        </div>
-                    </button>
-                    </td>
-                </tr>
             </table>
+            </div>
             <br>
-            <br>
-            <%--<br>--%>
-            <%--<link rel="stylesheet" href="ionicons.css"/>--%>
-            <%--&lt;%&ndash;<div class="mdui-center" >&ndash;%&gt;--%>
-                <%--用户名：--%>
-                    <%--<div class="mdui-textfield">--%>
-                        <%--<i class="mdui-icon material-icons"></i>--%>
-                        <%--<div class="mdui-hoverable">--%>
-                            <%--<input class="mdui-textfield-input" type="text" placeholder="用户名"/>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                    <%--<br>--%>
-                <%--密&nbsp;&nbsp;码：--%>
-                        <%--<div class="mdui-textfield">--%>
-                            <%--<input class="mdui-textfield-input"  type="password" placeholder="密码"/>--%>
-                        <%--</div>--%>
-                    <%--<br>--%>
-                    <%--<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">登录--%>
-                        <%--<div class="main-btn-wrapper">--%>
-                            <%--<a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>--%>
-                        <%--</div>--%>
-                    <%--</button>--%>
-            <%--</table>--%>
 
-
-
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" style="justify-content: center;margin-left: auto;margin-right: auto;width: 200px;" >登录
+            <div class="main-btn-wrapper">
+                <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>
+            </div>
+        </button>
 
         </form>
-
-
     </div>
     <br>
     <br>
@@ -133,6 +104,5 @@
             $appbar[document.body.scrollTop === 0 ? 'addClass' : 'removeClass']('mdui-shadow-0');
         });
     });
-
 </script></body></html>
 

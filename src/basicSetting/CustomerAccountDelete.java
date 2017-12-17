@@ -2,7 +2,6 @@ package basicSetting;
 
 import DBHelper.CustomerDBH;
 import DBHelper.DBHGeneral;
-import DBHelper.ReceptionistDBH;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +20,7 @@ public class CustomerAccountDelete extends HttpServlet {
         try {
             Connection c = DBHGeneral.getConnection();
             CustomerDBH customerDBH = new CustomerDBH(c);
-            customerDBH.DeleteByUserID(customerIDDelete);
+            customerDBH.deleteByUserID(customerIDDelete);
         } catch (SQLException e) {
             e.printStackTrace();
         }

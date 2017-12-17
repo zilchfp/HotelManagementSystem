@@ -18,13 +18,13 @@ public class ReceptionistDBH {
     }
 
     public ResultSet Query(String sql) throws SQLException {
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
 
     public void Delete(String ReceptionistID) throws SQLException {
         this.setID(ReceptionistID);
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         String sql = "delete from Receptionist where ID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         Helper.addStrings(stm, attributeList);
@@ -33,7 +33,7 @@ public class ReceptionistDBH {
 
     public void Modify(String ReceptionistID) throws SQLException {
         this.setID(ReceptionistID);
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         String sql = "delete from Receptionist where ID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         Helper.addStrings(stm, attributeList);
@@ -42,22 +42,22 @@ public class ReceptionistDBH {
 
     //数据库的增删查改
     //增
-    public void AddReceptionist(Receptionist receptionist) throws SQLException {
+    public void addReceptionist(Receptionist receptionist) throws SQLException {
         this.ID = receptionist.getID();
         this.name = receptionist.getName();
         this.gender = receptionist.getName();
         this.username = receptionist.getUsername();
         this.password = receptionist.getPassword();
         String sql = "insert into Receptionist values (?,?,?,?,?)";
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         Helper.execute(connection, attributeList, sql);
     }
 
     //删
-    public void DeleteByID(String ReceptionistID) throws SQLException {
+    public void deleteByID(String ReceptionistID) throws SQLException {
         this.ID = ReceptionistID;
         String sql = "delete from Receptionist where ID = ?";
-        Vector<String> attributeList = GetAttributeList();
+        Vector<String> attributeList = getAttributeList();
         Helper.execute(connection, attributeList, sql);
 
     }
@@ -76,7 +76,7 @@ public class ReceptionistDBH {
     private Connection connection;
 
 
-    private Vector<String> GetAttributeList() {
+    private Vector<String> getAttributeList() {
         Vector<String> attributeList;
         attributeList = new Vector<>();
         attributeList.add(this.ID);

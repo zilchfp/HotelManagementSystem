@@ -2,6 +2,7 @@ package entity;
 
 import DBHelper.CustomerDBH;
 import DBHelper.DBHGeneral;
+import DBHelper.OrdersDBH;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
 
 public class Customer {
 //    private static String userID;
@@ -30,7 +30,7 @@ public class Customer {
         this.IDNumber = res.getString("IDNumber");
     }
 
-    public Customer(String username,String  password,String IDNumber) {
+    public Customer (String username,String  password,String IDNumber) {
         // TODO
         //这里生成的ID有可能与原数据库的的ID冲突，这里因为选的是long产生的随机ID，所以在数据较小的情况下暂时没有问题
         this.userID = GeneralHelp.getRandomUserID();
@@ -38,10 +38,16 @@ public class Customer {
         this.password = password;
         this.IDNumber = IDNumber;
     }
+    public Customer (String userID) {
+        this.userID = userID;
+        this.username = null;
+        this.password = null;
+        this.IDNumber = null;
+    }
 
 
     //用户登录时的相关初始化工作
-    public void LoginInitialize(HttpServletRequest request, HttpServletResponse response) {
+    public void loginInitialize(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.setAttribute("hasLogin",true);
         session.setAttribute("customer",this);
@@ -51,7 +57,7 @@ public class Customer {
     public void register() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
         CustomerDBH customerDBH = new CustomerDBH(connection);
-        customerDBH.AddCustomer(this);
+        customerDBH.addCustomer(this);
         connection.close();
     }
 
@@ -59,9 +65,15 @@ public class Customer {
         Connection connection = DBHGeneral.getConnection();
         String userID = this.getUserID();
         CustomerDBH customerDBH = new CustomerDBH(connection);
-        customerDBH.DeleteByUserID(this.getUserID());
+        customerDBH.deleteByUserID(this.getUserID());
         connection.close();
     }
+
+    public ResultSet getAllOrders() throws SQLException {
+        OrdersDBH ordersDBH = new OrdersDBH(DBHGeneral.getConnection());
+        return ordersDBH.queryByCustomerID(this.userID);
+    }
+
 
     //PRIVATE MEMBER
 

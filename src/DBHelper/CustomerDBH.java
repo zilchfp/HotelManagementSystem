@@ -25,7 +25,7 @@ public class CustomerDBH {
 
     //数据库的增删查改操作
     //增
-    public void AddCustomer(Customer c) throws SQLException {
+    public void addCustomer(Customer c) throws SQLException {
         this.userID = c.getUserID();
         this.username = c.getUsername();
         this.password = c.getPassword();
@@ -36,7 +36,7 @@ public class CustomerDBH {
     }
 
     //删
-    public void DeleteByUserID(String userID) throws SQLException {
+    public void deleteByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "delete from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
@@ -44,13 +44,13 @@ public class CustomerDBH {
     }
 
     //查
-    public ResultSet QueryByUsername(String username) throws SQLException {
+    public ResultSet queryByUsername(String username) throws SQLException {
         this.username = username;
         String sql = "select * from Customer where username = ?";
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
-    public ResultSet QueryByUserID(String userID) throws SQLException {
+    public ResultSet queryByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "select * from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
@@ -58,21 +58,21 @@ public class CustomerDBH {
     }
 
     //改
-    public void UpdateUsername(String Username, String ID) throws SQLException {
+    public void updateUsername(String Username, String ID) throws SQLException {
         String sql = " update Customer set username=? where userID=?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,Username);
         stm.setString(2,ID);
         stm.executeUpdate();
     }
-    public void UpdatePassword(String Password, String ID) throws SQLException {
+    public void updatePassword(String Password, String ID) throws SQLException {
         String sql = " update Customer set password=? where userID=?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,Password);
         stm.setString(2,ID);
         stm.executeUpdate();
     }
-    public void UpdateIDNumber(String IDNumber, String ID) throws SQLException {
+    public void updateIDNumber(String IDNumber, String ID) throws SQLException {
         String sql = " update Customer set IDNumber=? where userID=?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,IDNumber);
@@ -81,7 +81,7 @@ public class CustomerDBH {
     }
 
 
-    public void ShowOrder() {
+    public void showOrder() {
 
     }
 

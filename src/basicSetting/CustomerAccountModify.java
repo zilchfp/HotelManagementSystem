@@ -2,7 +2,6 @@ package basicSetting;
 
 import DBHelper.CustomerDBH;
 import DBHelper.DBHGeneral;
-import entity.GeneralHelp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import static java.lang.System.out;
 
 @WebServlet("/basicSetting/CustomerAccountModify.do")
 public class CustomerAccountModify extends HttpServlet {
@@ -34,15 +31,15 @@ public class CustomerAccountModify extends HttpServlet {
 
             if (!usernameModify.equals("")) {
                 CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.UpdateUsername(usernameModify, userIDModify);
+                customerDBH.updateUsername(usernameModify, userIDModify);
             } ;
             if (!passwordModify.equals("")) {
                 CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.UpdatePassword(passwordModify, userIDModify);
+                customerDBH.updatePassword(passwordModify, userIDModify);
             };
             if (!IDNumberModify.equals("")) {
                 CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.UpdateIDNumber(IDNumberModify, userIDModify);
+                customerDBH.updateIDNumber(IDNumberModify, userIDModify);
             };
 
             c.close();

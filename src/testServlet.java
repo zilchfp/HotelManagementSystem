@@ -1,9 +1,8 @@
 import DBHelper.DBHGeneral;
 import DBHelper.OrdersDBH;
 import DBHelper.ReceptionistDBH;
-import entity.GeneralHelp;
-import entity.Orders;
-import entity.Receptionist;
+import DBHelper.RoomDBH;
+import entity.Customer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,25 +32,25 @@ public class testServlet extends HttpServlet {
 //            receptionist.setName("Hello");
 //            receptionist.setUsername("hellow");
 //            receptionist.setPassword("xixixi");
-            receptionistDBH.DeleteByID("100010");
+            receptionistDBH.deleteByID("100010");
 
 
             OrdersDBH ordersDBH = new OrdersDBH(c);
-            Orders orders = new Orders();
-            orders.setRoomID("1");
-            orders.setCustomerID("1");
-            orders.setCustomerName("orders");
-            orders.setDateBegin("12-10-11");
-            orders.setDateEnd("12-11-12");
-            orders.setStatus("BOOKED");
-            //ordersDBH.AddOrder(orders);
-            //            ordersDBH.DeleteByID("406537966173648292");
-            ResultSet resultSet = ordersDBH.QueryByID("3066393220243293899");
+//            Orders orders = new Orders();
+//            orders.setRoomID("1");
+//            orders.setCustomerID("1");
+//            orders.setCustomerName("orders");
+//            orders.setDateBegin("17-1-11");
+//            orders.setDateEnd("17-1-15");
+//            orders.setStatus("BOOKED");
+
+            RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
+
+            Customer customer = new Customer("1");
+            ResultSet resultSet = customer.getAllOrders();
             while (resultSet.next()) {
                 out.println(resultSet.getString(1));
-
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
