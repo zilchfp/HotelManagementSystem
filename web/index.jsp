@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-  <title>MDUI | Material Design 样式的响应式前端框架</title>
+  <title></title>
   <link rel="stylesheet" href="./MDUI_files/mdui.min.css">
   <link rel="stylesheet" href="./MDUI_files/style.css">
   <script src="https://hm.baidu.com/hm.js?33d719afc3e48d8a2fbdd886b164d2e4"></script><script>

@@ -43,7 +43,7 @@
             </div>
             <div class="mdui-collapse-item-body mdui-list">
                 <a href="RoomTypeSetting.jsp" class="mdui-list-item mdui-ripple " id="RoomTypeSetting">客房类型设置</a>
-                <a href="./RoomInformationSetting.jsp" class="mdui-list-item mdui-ripple " id="RoomInformationSetting">客房信息设置</a>
+                <a href="./RoomInformationSettingID.jsp" class="mdui-list-item mdui-ripple " id="RoomInformationSetting">客房信息设置</a>
             </div>
         </div>
 
@@ -84,12 +84,23 @@
     </div>
 </div>
 
-<!-- 首屏 -->
-<div class="mdui-container doc-container" style="display: flex;flex-direction: column;">
-    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
+<!--&lt;!&ndash; 首屏 &ndash;&gt;-->
+<!--<div class="mdui-container doc-container" style="display: flex;flex-direction: column;">-->
+    <!--<div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">-->
 
+<script type="text/javascript">
+    var $$ = mdui.JQ;
 
-    </div>
-</div>
+    $$(function () {
+        // appbar 自动隐藏
+        var $appbar = $$('.mdui-appbar');
+        $$(window).on('scroll', function () {
+            $appbar[document.body.scrollTop === 0 ? 'addClass' : 'removeClass']('mdui-shadow-0');
+        });
+    });
+</script>
+
+    <!--</div>-->
+<!--</div>-->
 </body></html>
 

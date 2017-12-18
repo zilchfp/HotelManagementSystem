@@ -2,6 +2,9 @@
 
 <jsp:include page="DrawerBar.html"></jsp:include>
 
+
+
+
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
     //p for parent bar
