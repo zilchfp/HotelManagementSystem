@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 import static java.lang.System.out;
 
-@WebServlet(name = "Register",urlPatterns = "/bookOnline/Register.do")
+@WebServlet("/bookOnline/Register.do")
 public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerName = request.getParameter("customerName");

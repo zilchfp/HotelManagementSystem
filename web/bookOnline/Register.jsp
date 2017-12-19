@@ -1,32 +1,3 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-    <%--<title>客户注册</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<h1>--%>
-    <%--客户注册--%>
-<%--</h1>--%>
-<%--<form action = "/bookOnline/Register.do" method = "post">--%>
-
-    <%--姓名：<input type = "text" size = "20" name = "customerName" required/>--%>
-    <%--<br>--%>
-    <%--<br>--%>
-    <%--&lt;%&ndash;性别：<input type = "radio" name = "customerGender" value="male" /> 男&ndash;%&gt;--%>
-         <%--&lt;%&ndash;<input type = "radio" name = "customerGender" value="female" /> 女&ndash;%&gt;--%>
-    <%--密码：<input type = "text" size = "20" name = "customerPassword" required/>--%>
-    <%--<br>--%>
-    <%--<br>--%>
-    <%--身份证号码：<input type = "text" size = "30" name = "customerID" required/>--%>
-    <%--<br>--%>
-    <%--<br>--%>
-    <%--<input type = "submit"  value="注册账号"/>--%>
-<%--</form>--%>
-
-
-<%--</body>--%>
-<%--</html>--%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -70,12 +41,12 @@
         </h2>
         <div class="mdui-center" style="width: 500px;">
             <table style="justify-content: center;margin-left: auto;margin-right: auto;">
-                <form action="bookOnline/Register.do" method="post">
+                <form action="/bookOnline/Register.do" method="post">
                     <tr>
                         <td>
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <label class="mdui-textfield-label" ></label>
-                            <input class="mdui-textfield-input" type = "text" size = "20" name = "customerName" required/>
+                            <%--<input class="mdui-textfield-input" type = "text" size = "20" name = "customerName" required/>--%>
                         </div>
                         </td>
                     </tr>
@@ -112,10 +83,10 @@
                         <td>
                             <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
                                     style="justify-content: center;margin-left: auto;margin-right: auto;width: 200px;" >注册
-                                <div class="main-btn-wrapper">
-                                    <a href="/bookOnline/Login.do"
-                                       class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>
-                                </div>
+                                <%--<div class="main-btn-wrapper">--%>
+                                    <%--<a href="/bookOnline/Login.do"--%>
+                                       <%--class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>--%>
+                                <%--</div>--%>
                             </button>
                         </td>
                 </form>
