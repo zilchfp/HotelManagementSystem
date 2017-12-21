@@ -4,6 +4,16 @@
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
 
+
+<div class="mdui-container doc-container main-section" style="display: flex;flex-direction: column;">
+    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
+        <div class="mdui-list" style="size: 100px">
+            <a href="CustomerOrdersQuery.jsp" class="mdui-list-item mdui-ripple">订单查询</a>
+            <a href=".jsp" class="mdui-list-item mdui-ripple">订单修改</a>
+        </div>
+    </div>
+</div>
+
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
     //p for parent bar
@@ -16,15 +26,5 @@
     c.setAttribute('class',active);
 </script>
 
-<script type="text/javascript">
-    var $$ = mdui.JQ;
-
-    $$(function () {
-        // appbar 自动隐藏
-        var $appbar = $$('.mdui-appbar');
-        $$(window).on('scroll', function () {
-            $appbar[document.body.scrollTop === 0 ? 'addClass' : 'removeClass']('mdui-shadow-0');
-        });
-    });
-</script></body></html>
+</body></html>
 

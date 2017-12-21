@@ -1,12 +1,15 @@
 package DBHelper;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import entity.GeneralHelp;
 import entity.Orders;
 
+import javax.naming.PartialResultException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class OrdersDBH {
@@ -67,8 +70,13 @@ public class OrdersDBH {
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
+//    public ArrayList<Orders> queryByCustomerID(String customerID) throws SQLException {
+//
+//    }
 
-    //改
+
+
+        //改
     public void updateDateBeginByOrderID(String OrderID, String dateBegin) throws SQLException {
         String sql = "update Orders set dateBegin=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
@@ -106,6 +114,25 @@ public class OrdersDBH {
 
     }
 
+
+
+    public ArrayList<Orders> resultSetToArrayList(ResultSet resultSet) throws SQLException {
+        ArrayList<Orders> ordersArrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            Orders o = new Orders();
+            o.setOrderID(resultSet.getString(1));
+            o.setRoomID(resultSet.getString(2));
+            o.setCustomerID(resultSet.getString(3));
+            o.setCustomerName(resultSet.getString(4));
+            o.setDateBegin(resultSet.getString(5));
+            o.setDateEnd(resultSet.getString(6));
+            o.setStatus(resultSet.getString(7));
+            ordersArrayList.add(o);
+        }
+        return ordersArrayList;
+    }
+
+
     //PRIVATE MEMBERS
     private Vector<String> getAttributeList() {
         Vector<String> attributeList;
@@ -119,6 +146,9 @@ public class OrdersDBH {
         attributeList.add(this.status);
         return attributeList;
     }
+
+
+
 
     //SETTER AND GETTER
     public String getOrderID() {

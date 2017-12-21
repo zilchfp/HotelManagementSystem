@@ -1,7 +1,6 @@
 package entity;
 
 public class Orders {
-
     private String OrderID;
     private String roomID;
     private String customerID;
