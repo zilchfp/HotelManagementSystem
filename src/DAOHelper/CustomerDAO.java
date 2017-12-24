@@ -1,18 +1,18 @@
-package DBHelper;
+package DAOHelper;
 
 import entity.Customer;
 
 import java.sql.*;
 import java.util.Vector;
 
-public class CustomerDBH {
+public class CustomerDAO {
     private String userID;
     private String username;
     private String password;
     private String IDNumber;
     private Connection connection;
 
-    public CustomerDBH(Connection c) {
+    public CustomerDAO(Connection c) {
         //拓展性不好，当属性数量增长时，容易代码膨胀
         this.connection = c;
         this.userID = null;
@@ -53,6 +53,11 @@ public class CustomerDBH {
     public ResultSet queryByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "select * from Customer where userID = ?";
+        Vector<String> attributeList = getAttributeList();
+        return Helper.getResult(connection, attributeList, sql);
+    }
+    public ResultSet getAllCustomers() throws SQLException {
+        String sql = "select * from Customer";
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }

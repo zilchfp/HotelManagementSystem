@@ -41,7 +41,7 @@
         </h2>
             <div class="mdui-center" style="width: 500px;">
                 <table style="justify-content: center;margin-left: auto;margin-right: auto;">
-                    <form action="bookOnline/Index.jsp" method="post">
+                    <form action="/bookOnline/Login.do" method="post">
                     <tr><td>
                         用户名：
                     </td>

@@ -1,8 +1,8 @@
 package entity;
 
-import DBHelper.CustomerDBH;
-import DBHelper.DBHGeneral;
-import DBHelper.OrdersDBH;
+import DAOHelper.CustomerDAO;
+import DAOHelper.DBHGeneral;
+import DAOHelper.OrdersDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,21 +56,21 @@ public class Customer {
 
     public void register() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
-        CustomerDBH customerDBH = new CustomerDBH(connection);
-        customerDBH.addCustomer(this);
+        CustomerDAO customerDAO = new CustomerDAO(connection);
+        customerDAO.addCustomer(this);
         connection.close();
     }
 
     public void remove() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
         String userID = this.getUserID();
-        CustomerDBH customerDBH = new CustomerDBH(connection);
-        customerDBH.deleteByUserID(this.getUserID());
+        CustomerDAO customerDAO = new CustomerDAO(connection);
+        customerDAO.deleteByUserID(this.getUserID());
         connection.close();
     }
 
     public ResultSet getAllOrders() throws SQLException {
-        OrdersDBH ordersDBH = new OrdersDBH(DBHGeneral.getConnection());
+        OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
         return ordersDBH.queryByCustomerID(this.userID);
     }
 

@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
 
+
+
+
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
     //p for parent bar
@@ -15,16 +18,5 @@
     var active = "mdui-list-item mdui-ripple mdui-list-item-active";
     c.setAttribute('class',active);
 </script>
-
-<script type="text/javascript">
-    var $$ = mdui.JQ;
-
-    $$(function () {
-        // appbar 自动隐藏
-        var $appbar = $$('.mdui-appbar');
-        $$(window).on('scroll', function () {
-            $appbar[document.body.scrollTop === 0 ? 'addClass' : 'removeClass']('mdui-shadow-0');
-        });
-    });
-</script></body></html>
+</body></html>
 

@@ -1,8 +1,8 @@
 package entity;
 
-import DBHelper.DBHGeneral;
-import DBHelper.OrdersDBH;
-import DBHelper.RoomDBH;
+import DAOHelper.DBHGeneral;
+import DAOHelper.OrdersDAO;
+import DAOHelper.RoomDBH;
 
 import java.sql.SQLException;
 
@@ -15,11 +15,20 @@ public class Receptionist {
 
 
     //前台管理
+    public void preservationCheckin(String orderID) throws SQLException {
+        OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
+        ordersDBH.updateStatusByOrderID(orderID,"LIVING");
+    }
     public void roomCheckout(String roomID) throws SQLException {
         RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
         roomDBH.updateStatusByRoomID(roomID, "AVALIABLE");
 
         //TODO SHOW BILLS
+    }
+
+    public void changeRoomByOrderID(String orderID, String newRoomID) throws SQLException {
+        OrdersDAO ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
+        ordersDAO.singleUpdate("roomID",newRoomID,"OrderID",orderID);
     }
 
     public void changeRoomNumber(String roomID, String roomNumber) throws SQLException {
@@ -28,7 +37,7 @@ public class Receptionist {
     }
 
     public void extendCheckoutTimeByOrderID(String OrderID, String newDateEnd) throws SQLException {
-        OrdersDBH ordersDBH = new OrdersDBH(DBHGeneral.getConnection());
+        OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
         ordersDBH.updateDateEndByOrderID(OrderID, newDateEnd);
     }
 

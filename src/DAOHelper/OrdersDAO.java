@@ -1,10 +1,8 @@
-package DBHelper;
+package DAOHelper;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import entity.GeneralHelp;
 import entity.Orders;
 
-import javax.naming.PartialResultException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class OrdersDBH {
+import static java.lang.System.out;
+
+public class OrdersDAO {
     private String OrderID;
     private String roomID;
     private String customerID;
@@ -22,7 +22,7 @@ public class OrdersDBH {
     private String status;
     private Connection connection;
 
-    public OrdersDBH(Connection c) {
+    public OrdersDAO(Connection c) {
         this.connection = c;
         this.OrderID = null;
         this.roomID = null;
@@ -32,7 +32,6 @@ public class OrdersDBH {
         this.dateEnd = null;
         this.status = null;
     }
-
     //数据库的增删查改
     //增
     public void addOrder(Orders orders) throws SQLException {
@@ -86,7 +85,7 @@ public class OrdersDBH {
     }
 
     public void updateDateEndByOrderID(String OrderID, String dateEnd) throws SQLException {
-        String sql = "update Orders set customerName=? where OrderID=?;";
+        String sql = "update Orders set dateEnd=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,dateEnd);
         stm.setString(2,OrderID);
@@ -109,9 +108,15 @@ public class OrdersDBH {
         stm.executeUpdate();
     }
 
-    private void update() {
-
-
+    public void singleUpdate(String setAttribute, String setValue,
+                              String whereAttribute, String whereValue) throws SQLException {
+        String sql = "update Orders set " +
+                        setAttribute+"=? where " +
+                        whereAttribute+"=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,setValue);
+        stm.setString(2,whereValue);
+        stm.executeUpdate();
     }
 
 

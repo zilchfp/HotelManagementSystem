@@ -1,7 +1,7 @@
 package ReceptionManagement;
 
-import DBHelper.DBHGeneral;
-import DBHelper.RoomDBH;
+import DAOHelper.DBHGeneral;
+import DAOHelper.RoomDBH;
 import entity.Receptionist;
 
 import javax.servlet.ServletException;

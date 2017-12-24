@@ -1,7 +1,7 @@
-import DBHelper.DBHGeneral;
-import DBHelper.OrdersDBH;
-import DBHelper.ReceptionistDBH;
-import DBHelper.RoomDBH;
+import DAOHelper.DBHGeneral;
+import DAOHelper.OrdersDAO;
+import DAOHelper.ReceptionistDAO;
+import DAOHelper.RoomDBH;
 import entity.Customer;
 
 import javax.servlet.ServletException;
@@ -26,16 +26,16 @@ public class testServlet extends HttpServlet {
         try {
 
             Connection c = DBHGeneral.getConnection();
-            ReceptionistDBH receptionistDBH = new ReceptionistDBH(c);
+            ReceptionistDAO receptionistDAO = new ReceptionistDAO(c);
 //            receptionist.setID(GeneralHelp.getRandomUserID());
 //            receptionist.setGender("Femal");
 //            receptionist.setName("Hello");
 //            receptionist.setUsername("hellow");
 //            receptionist.setPassword("xixixi");
-            receptionistDBH.deleteByID("100010");
+            receptionistDAO.deleteByID("100010");
 
 
-            OrdersDBH ordersDBH = new OrdersDBH(c);
+            OrdersDAO ordersDBH = new OrdersDAO(c);
 //            Orders orders = new Orders();
 //            orders.setRoomID("1");
 //            orders.setCustomerID("1");

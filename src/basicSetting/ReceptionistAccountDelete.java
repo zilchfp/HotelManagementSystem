@@ -1,7 +1,7 @@
 package basicSetting;
 
-import DBHelper.DBHGeneral;
-import DBHelper.ReceptionistDBH;
+import DAOHelper.DBHGeneral;
+import DAOHelper.ReceptionistDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +19,8 @@ public class ReceptionistAccountDelete extends HttpServlet {
 
         try {
             Connection c = DBHGeneral.getConnection();
-            ReceptionistDBH receptionistDBH = new ReceptionistDBH(c);
-            receptionistDBH.Delete(receptionistIDDelete);
+            ReceptionistDAO receptionistDAO = new ReceptionistDAO(c);
+            receptionistDAO.Delete(receptionistIDDelete);
         } catch (SQLException e) {
             e.printStackTrace();
         }

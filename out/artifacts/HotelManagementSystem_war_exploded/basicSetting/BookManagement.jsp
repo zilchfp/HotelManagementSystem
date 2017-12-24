@@ -25,6 +25,5 @@
     var active = "mdui-list-item mdui-ripple mdui-list-item-active";
     c.setAttribute('class',active);
 </script>
-
 </body></html>
 

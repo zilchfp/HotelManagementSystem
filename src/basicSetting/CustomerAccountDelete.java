@@ -1,7 +1,7 @@
 package basicSetting;
 
-import DBHelper.CustomerDBH;
-import DBHelper.DBHGeneral;
+import DAOHelper.CustomerDAO;
+import DAOHelper.DBHGeneral;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +19,8 @@ public class CustomerAccountDelete extends HttpServlet {
 
         try {
             Connection c = DBHGeneral.getConnection();
-            CustomerDBH customerDBH = new CustomerDBH(c);
-            customerDBH.deleteByUserID(customerIDDelete);
+            CustomerDAO customerDAO = new CustomerDAO(c);
+            customerDAO.deleteByUserID(customerIDDelete);
         } catch (SQLException e) {
             e.printStackTrace();
         }

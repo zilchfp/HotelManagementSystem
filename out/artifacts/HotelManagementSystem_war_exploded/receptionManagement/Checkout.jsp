@@ -1,20 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="DrawerBar.html"></jsp:include>
-<!-- Content-->
-<div class="mdui-container doc-container main-section" style="display: flex;flex-direction: column;">
-    <%--<div class="mdui-container doc-container main-section mdui-color-theme" style="display: flex;flex-direction: column;">--%>
-    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
-        <h1>
-        退房管理
-        </h1>
-        请输入房间编号：
-        <form action="/ReceptionManagemnt/Checkout.do" method="post">
-        <input type="text" size="10" name="checkoutRoomID">
-        <input type="submit" value="提交">
-        </form>
-    </div>
-
+<%--Context--%>
+<div class="mdui-container main-container mdui-text-left">
+    <h1>
+        请输入退房的房间编号
+    </h1>
+    <form action="/ReceptionManagemnt/Checkout.do" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">ID</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="checkoutRoomID"/>
+        </div>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
 </div>
 
 

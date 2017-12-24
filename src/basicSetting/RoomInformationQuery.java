@@ -1,8 +1,7 @@
 package basicSetting;
 
-import DBHelper.DBHGeneral;
-import DBHelper.RoomDBH;
-import entity.Customer;
+import DAOHelper.DBHGeneral;
+import DAOHelper.RoomDBH;
 import entity.Room;
 
 import javax.servlet.RequestDispatcher;

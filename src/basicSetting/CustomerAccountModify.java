@@ -1,7 +1,7 @@
 package basicSetting;
 
-import DBHelper.CustomerDBH;
-import DBHelper.DBHGeneral;
+import DAOHelper.CustomerDAO;
+import DAOHelper.DBHGeneral;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,16 +30,16 @@ public class CustomerAccountModify extends HttpServlet {
             Connection c = DBHGeneral.getConnection();
 
             if (!usernameModify.equals("")) {
-                CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.updateUsername(usernameModify, userIDModify);
+                CustomerDAO customerDAO = new CustomerDAO(c);
+                customerDAO.updateUsername(usernameModify, userIDModify);
             } ;
             if (!passwordModify.equals("")) {
-                CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.updatePassword(passwordModify, userIDModify);
+                CustomerDAO customerDAO = new CustomerDAO(c);
+                customerDAO.updatePassword(passwordModify, userIDModify);
             };
             if (!IDNumberModify.equals("")) {
-                CustomerDBH customerDBH = new CustomerDBH(c);
-                customerDBH.updateIDNumber(IDNumberModify, userIDModify);
+                CustomerDAO customerDAO = new CustomerDAO(c);
+                customerDAO.updateIDNumber(IDNumberModify, userIDModify);
             };
 
             c.close();

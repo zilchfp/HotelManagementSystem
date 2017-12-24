@@ -27,7 +27,7 @@
                 <th>客户名</th>
                 <th>订单开始日期</th>
                 <th>订单结束日期</th>
-                <th>状态</th>
+                <th>订单状态</th>
             </tr>
             </thead>
             <tbody>
@@ -48,13 +48,7 @@
         </table>
     </div>
 </div>
-<%
-//    ArrayList<Orders> ordersArrayList = (ArrayList<Orders>) request.getAttribute("CustomerOrdersQueryResult");
-//    Orders orders = ordersArrayList.get(0);
-//    out.println(orders.getCustomerID());
-//    out.println(orders.getDateBegin());
-//    out.println(orders.getDateEnd());
-%>
+
 </div>
 
 <script src="../MDUI_files/mdui.min.js"></script>

@@ -1,7 +1,7 @@
 package entity;
 
-import DBHelper.CustomerDBH;
-import DBHelper.DBHGeneral;
+import DAOHelper.CustomerDAO;
+import DAOHelper.DBHGeneral;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,8 +16,8 @@ public class Manager {
 
     public void addCustomerAccount(Customer customer) throws SQLException {
         Connection c = DBHGeneral.getConnection();
-        CustomerDBH customerDBH = new CustomerDBH(c);
-        customerDBH.addCustomer(customer);
+        CustomerDAO customerDAO = new CustomerDAO(c);
+        customerDAO.addCustomer(customer);
     }
 
     public void addRoom() {

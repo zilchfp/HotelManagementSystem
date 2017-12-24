@@ -1,4 +1,4 @@
-package DBHelper;
+package DAOHelper;
 
 import entity.Receptionist;
 
@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-public class ReceptionistDBH {
-    public ReceptionistDBH(Connection c) {
+public class ReceptionistDAO {
+    public ReceptionistDAO(Connection c) {
         //拓展性不好，当属性数量增长时，容易代码膨胀
         this.connection = c;
         this.ID = null;

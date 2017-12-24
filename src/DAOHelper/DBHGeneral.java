@@ -1,4 +1,4 @@
-package DBHelper;
+package DAOHelper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package DBHelper;
+package DAOHelper;
 
 import entity.GeneralHelp;
 import entity.Room;

@@ -1,7 +1,7 @@
 package bookOnline;
 
-import DBHelper.CustomerDBH;
-import DBHelper.DBHGeneral;
+import DAOHelper.CustomerDAO;
+import DAOHelper.DBHGeneral;
 import entity.Customer;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
+import static java.lang.System.out;
+
 @WebServlet("/bookOnline/Login.do")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,17 +27,20 @@ public class Login extends HttpServlet {
             String username = request.getParameter("nameCustomerLogin");
             //数据库查询
             conn = DBHGeneral.getConnection();
-            CustomerDBH helper = new CustomerDBH(conn);
-            ResultSet res = helper.queryByUsername(username);
+            CustomerDAO helper = new CustomerDAO(conn);
+            ResultSet res = helper.getAllCustomers();
 
             //查询结果处理
             String passwordCustomerLogin = request.getParameter("passwordCustomerLogin");
+//            out.println("name:"+username+"  password:"+passwordCustomerLogin);
+
             while (res.next()) {
                 String resPassword = res.getString("password");
                 boolean passwordIsRight = passwordCustomerLogin.equals(resPassword);
                 if (passwordIsRight) {
                     Customer customer = new Customer(res);
-                    session.setAttribute("customer",customer);
+                    session.setAttribute("LoginCustomer",customer);
+//                    out.println("add LoginCustomer");
                     customer.loginInitialize(request, response);
                     findCustomer = true;
                     RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");

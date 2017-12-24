@@ -17,6 +17,7 @@ public class LoginCheckFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) req;
         HttpSession session = request.getSession();
         Boolean hasLogin = (Boolean) session.getAttribute("hasLogin");

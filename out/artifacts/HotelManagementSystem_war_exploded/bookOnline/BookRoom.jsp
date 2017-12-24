@@ -1,21 +1,28 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zilchfp
-  Date: 17-12-4
-  Time: 下午9:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>BookRoom</title>
-</head>
-<body>
-<h1>
-    订单详情
-</h1>
+<jsp:include page="DrawerBar.html"></jsp:include>
+<!-- 首屏 -->
+<div class="mdui-container doc-container" style="display: flex;flex-direction: column;">
+    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
+        <h1>
+            订单详情
+        </h1>
 
-预定以下房间：
+        预定以下房间：
 
-</body>
-</html>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    //p for parent bar
+    var  p = document.getElementById("BookRoom");
+    var open = "mdui-collapse-item mdui-collapse-item-open";
+    p.setAttribute("class",open);
+    //c for child bar
+    var c = document.getElementById("AvailableRoomQuery");
+    var active = "mdui-list-item mdui-ripple mdui-list-item-active";
+    c.setAttribute('class',active);
+</script>
+<script src="../MDUI_files/mdui.min.js"></script>
+</body></html>
+

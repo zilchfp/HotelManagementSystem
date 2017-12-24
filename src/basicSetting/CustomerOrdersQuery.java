@@ -1,11 +1,9 @@
 package basicSetting;
 
-import DBHelper.DBHGeneral;
-import DBHelper.OrdersDBH;
-import entity.GeneralHelp;
+import DAOHelper.DBHGeneral;
+import DAOHelper.OrdersDAO;
 import entity.Orders;
 
-import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +24,7 @@ public class CustomerOrdersQuery extends HttpServlet {
         String IDOfCustomerRoomQuery = request.getParameter("IDOfCustomerRoomQuery");
         HttpSession session = request.getSession();
         try {
-            OrdersDBH ordersDBH = new OrdersDBH(DBHGeneral.getConnection());
+            OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
             ResultSet resultSet = ordersDBH.queryByCustomerID(IDOfCustomerRoomQuery);
             ArrayList<Orders> ordersArrayList = ordersDBH.resultSetToArrayList(resultSet);
             request.setAttribute("CustomerOrdersQueryResult", ordersArrayList);
