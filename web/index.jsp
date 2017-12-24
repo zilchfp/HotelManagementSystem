@@ -45,7 +45,7 @@
       <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >经理登录</a>
       <a href="ReceptionistLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >接待员登录</a>
       <a href="CustomerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white">客户登录</a>
-      <a href="/bookOnline/RoomQuery.do" class="mdui-btn main-btn mdui-ripple mdui-ripple-white">test</a>
+      <a href="/testServlet" class="mdui-btn main-btn mdui-ripple mdui-ripple-white">test</a>
     </div>
   </div>
 </div>
