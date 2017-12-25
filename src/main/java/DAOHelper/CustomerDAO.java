@@ -62,6 +62,16 @@ public class CustomerDAO {
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
+    public ResultSet queryCustomersLiving() throws SQLException {
+        String sql ="select userID,IDNumber,Customer.customerName,roomID,dateBegin,dateEnd " +
+                    "from Customer " +
+                    "left join Orders " +
+                    "on Customer.userID = Orders.customerID " +
+                    "where (Orders.status='LIVING')" +
+                    "order by userID";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        return stm.executeQuery();
+    }
 
     //改
     public void updateUsername(String Username, String ID) throws SQLException {
