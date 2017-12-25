@@ -20,7 +20,7 @@ public class DBHGeneral {
         }
 
         Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelManagementSystem?" +
-                "user=javaweb&password=password");
+                "user=javaweb&password=password&useSSL=false");
         return c;
     }
 }

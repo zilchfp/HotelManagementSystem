@@ -1,5 +1,6 @@
 package DAOHelper;
 
+import entity.GeneralHelp;
 import entity.Orders;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,10 +12,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class OrdersDAOTest {
+    //“tar” for “Target”
     private Orders orders = new Orders();
     private String tarOderID = "999";
     private String tarRoomID = "1";
@@ -24,27 +27,22 @@ class OrdersDAOTest {
     private String tarDateEnd = "2017-12-21";
     private String tarStatus = "test";
     private OrdersDAO ordersDAO;
+    private Connection connection = DBHGeneral.getConnection();
 
-
-    @BeforeEach
-    void setUp() throws SQLException {
-        orders.setOrderID(tarOderID);
-        orders.setRoomID(tarRoomID);
-        orders.setCustomerID(tarCustomerID);
-        orders.setCustomerName(tarCustomerName);
-        orders.setDateBegin(tarDateBegin);
-        orders.setDateBegin(tarDateEnd);
-        orders.setStatus(tarStatus);
-        this.ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
-        MockitoAnnotations.initMocks(this);
+    OrdersDAOTest() throws SQLException {
     }
 
-    @AfterEach
-    void tearDown() throws SQLException {
-        Connection c = DBHGeneral.getConnection();
-        String sql = "UPDATE Orders SET OrderID=?,roomID=?,customerID=?," +
-                    "customerName=?,dateBegin=?, dateEnd=?, status=?";
-        PreparedStatement stm = c.prepareStatement(sql);
+
+    private boolean tarDataExampleExist() throws SQLException {
+        String sqlExist = "SELECT * FROM Orders WHERE OrderID=?";
+        PreparedStatement stmExist = connection.prepareStatement(sqlExist);
+        stmExist.setString(1,tarOderID);
+        ResultSet resultSetExist = stmExist.executeQuery();
+        return resultSetExist.next();
+    }
+    private void insertDataExample() throws SQLException {
+        String sql = "insert into Orders values (?,?,?,?,?,?,?)";
+        PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,tarOderID);
         stm.setString(2,tarRoomID);
         stm.setString(3,tarCustomerID);
@@ -52,14 +50,60 @@ class OrdersDAOTest {
         stm.setString(5,tarDateBegin);
         stm.setString(6,tarDateEnd);
         stm.setString(7,tarStatus);
+        stm.execute();
+    }
+    private void restoreDataExample() throws SQLException {
+        String sql = "UPDATE Orders SET roomID=?,customerID=?," +
+                "customerName=?,dateBegin=?, dateEnd=?, status=? WHERE OrderID='999'";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,tarRoomID);
+        stm.setString(2,tarCustomerID);
+        stm.setString(3,tarCustomerName);
+        stm.setString(4,tarDateBegin);
+        stm.setString(5,tarDateEnd);
+        stm.setString(6,tarStatus);
+        stm.executeUpdate();
+    }
+
+    @BeforeEach
+    void setUp() throws SQLException {
+        MockitoAnnotations.initMocks(this);
+        this.ordersDAO = new OrdersDAO(connection);
+        orders.setOrderID(tarOderID);
+        orders.setRoomID(tarRoomID);
+        orders.setCustomerID(tarCustomerID);
+        orders.setCustomerName(tarCustomerName);
+        orders.setDateBegin(tarDateBegin);
+        orders.setDateBegin(tarDateEnd);
+        orders.setStatus(tarStatus);
+        if (!tarDataExampleExist()) {
+            insertDataExample();
+        }
+    }
+
+    @AfterEach
+    void tearDown() throws SQLException {
+        if (!tarDataExampleExist()) {
+            insertDataExample();
+            return;
+        } else {
+            restoreDataExample();
+        }
     }
 
     @Test
-    void addOrder() {
+    void addOrder() throws SQLException {
+        ordersDAO.deleteByID(tarOderID);
+        assertEquals(false,tarDataExampleExist());
+
+        ordersDAO.addOrder(orders);
+        assertEquals(true,tarDataExampleExist());
     }
 
     @Test
-    void deleteByID() {
+    void deleteByID() throws SQLException {
+        ordersDAO.deleteByID(tarOderID);
+        assertEquals(false,tarDataExampleExist());
     }
 
     @Test

@@ -35,7 +35,11 @@ public class OrdersDAO {
     //数据库的增删查改
     //增
     public void addOrder(Orders orders) throws SQLException {
-        this.OrderID = GeneralHelp.getRandomUserID();
+        if (orders.getOrderID() == null) {
+            this.OrderID = GeneralHelp.getRandomUserID();  //FOR TestCase
+        } else {
+            this.OrderID = orders.getOrderID();
+        }
         this.roomID = orders.getRoomID();
         this.customerID = orders.getCustomerID();
         this.customerName = orders.getCustomerName();
@@ -43,16 +47,24 @@ public class OrdersDAO {
         this.dateEnd = orders.getDateEnd();
         this.status = orders.getStatus();
         String sql = "insert into Orders values (?,?,?,?,?,?,?)";
-        Vector<String> attributeList = getAttributeList();
-        Helper.execute(connection, attributeList, sql);
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,this.OrderID);
+        stm.setString(2,this.roomID);
+        stm.setString(3,this.customerID);
+        stm.setString(4,this.customerName);
+        stm.setString(5,this.dateBegin);
+        stm.setString(6,this.dateEnd);
+        stm.setString(7,this.status);
+        stm.execute();
     }
 
     //删
     public void deleteByID(String OrdersID) throws SQLException {
         this.OrderID = OrdersID;
         String sql = "delete from Orders where OrderID = ?";
-        Vector<String> attributeList = getAttributeList();
-        Helper.execute(connection, attributeList, sql);
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,OrderID);
+        stm.execute();
     }
 
     //查

@@ -34,8 +34,7 @@
             <c:forEach var="orders" items="${requestScope.CustomerOrdersQueryResult}"
                        varStatus="status" >
                 <tr>
-                    <%--<td>${orders.OrderID}</td>--%>
-                    <td></td>
+                    <td>${orders.orderID}</td>
                     <td>${orders.roomID}</td>
                     <td>${orders.customerID}</td>
                     <td>${orders.customerName}</td>

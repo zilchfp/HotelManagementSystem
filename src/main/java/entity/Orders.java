@@ -1,7 +1,7 @@
 package entity;
 
 public class Orders {
-    private String OrderID;
+    private String orderID;
     private String roomID;
     private String customerID;
     private String customerName;
@@ -12,14 +12,12 @@ public class Orders {
 
 
     //SETTER AND GETTER
-
-
     public String getOrderID() {
-        return OrderID;
+        return orderID;
     }
 
     public void setOrderID(String orderID) {
-        OrderID = orderID;
+        this.orderID = orderID;
     }
 
     public String getRoomID() {

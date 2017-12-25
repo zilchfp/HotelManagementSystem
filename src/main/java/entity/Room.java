@@ -26,6 +26,10 @@ public class Room {
     //
     public void lockRoom() {
         setRoomState(RoomState.LOCKED);
+        TYPE s = TYPE.valueOf("STANDARD");
+        if (s == TYPE.STANDARD) {
+
+        }
     }
 
     public RoomState getRoomState() {
