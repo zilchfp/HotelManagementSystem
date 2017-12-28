@@ -7,13 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
-import static java.lang.System.out;
+public class RoomDAO {
 
-public class RoomDBH {
-
-    public RoomDBH(Connection c) {
+    public RoomDAO(Connection c) {
         this.ID = null;
         this.number = null;
         this.type = null;
@@ -70,7 +70,24 @@ public class RoomDBH {
         }
         return resultRoom;
     }
+    public HashMap<String, Integer> getRoomTypeWithNumber() throws SQLException {
+        String sql ="select type,COUNT(ID) from Room group by type order by type;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet resultSet = stm.executeQuery();
+        HashMap<String,Integer> map = new HashMap<>();
+        while (resultSet.next()) {
+            String type = resultSet.getString(1);
+            int num = resultSet.getInt(2);
+            map.put(type,num);
+        }
+        return map;
+    }
+    public ResultSet getRoomUnavailableBetween(String dateBegin, String dateEnd) throws SQLException {
+        String sql ="select count(type),type from Room group by type";
 
+        PreparedStatement stm = connection.prepareStatement(sql);
+        return stm.executeQuery();
+    }
     //***************************************************************
     //修改
     //***************************************************************
@@ -79,6 +96,21 @@ public class RoomDBH {
         PreparedStatement stm = connection.prepareStatement(sql);
         Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
+    }
+    public boolean updateRoomInformation(Room room) throws SQLException {
+        String sql = "UPDATE Room " +
+                     "SET number=?, type=?, floor=?, direction=?, description=?, status=? " +
+                     "WHERE ID=?";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,room.getNumber());
+        stm.setString(2,room.getType());
+        stm.setString(3,room.getFloor());
+        stm.setString(4,room.getDirection());
+        stm.setString(5,room.getDescription());
+        stm.setString(6,room.getStatus());
+        stm.setString(7,room.getID());
+        int n = stm.executeUpdate();
+        return (n == 0 ? false : true);
     }
     public void updateStatusByRoomID(String roomID, String status) throws SQLException {
         String sql = " update Room set status=? where ID=?";

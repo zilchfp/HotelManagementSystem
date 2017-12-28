@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/basicSetting/CustomerAccountAdd.do")
+@WebServlet(name = "CustomerAccountAdd",urlPatterns = "/basicSetting/CustomerAccountAdd.do")
 public class CustomerAccountAdd extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerUsernameAdd = request.getParameter("customerUsernameAdd");

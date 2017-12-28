@@ -8,10 +8,20 @@ public class Orders {
     private String dateBegin;
     private String dateEnd;
     private String status;
+    private String type;
 
 
 
     //SETTER AND GETTER
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getOrderID() {
         return orderID;
     }

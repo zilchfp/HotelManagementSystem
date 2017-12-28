@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/basicSetting/CustomerAccountDelete.do")
+@WebServlet(name = "CustomerAccountDelete",urlPatterns = "/basicSetting/CustomerAccountDelete.do")
 public class CustomerAccountDelete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String customerIDDelete = request.getParameter("customerIDDelete");

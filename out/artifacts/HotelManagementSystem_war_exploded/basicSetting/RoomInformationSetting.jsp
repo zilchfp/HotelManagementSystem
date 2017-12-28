@@ -49,35 +49,35 @@
     <h1>
         将房间信息修改为如下
     </h1>
-    <form>
+    <form action="/basicSetting/RoomInformationUpdate.do" method="post">
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">房间号</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomID"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="number"></jsp:getProperty>>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">房间类型</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomType"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="type"></jsp:getProperty>>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">楼层</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomFloor"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="floor"></jsp:getProperty>>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">方位</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomDirection"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="direction"></jsp:getProperty>>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">房间描述</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomDescription"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="description"></jsp:getProperty>>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">房间状态</label>
-            <input class="mdui-textfield-input" type="text"
+            <input class="mdui-textfield-input" type="text" name="roomStatus"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="status"></jsp:getProperty>>
         </div>
         <br>

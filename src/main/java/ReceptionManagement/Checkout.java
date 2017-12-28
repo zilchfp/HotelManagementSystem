@@ -1,7 +1,7 @@
 package ReceptionManagement;
 
 import DAOHelper.DBHGeneral;
-import DAOHelper.RoomDBH;
+import DAOHelper.RoomDAO;
 import entity.Receptionist;
 
 import javax.servlet.ServletException;
@@ -33,7 +33,7 @@ public class Checkout extends HttpServlet {
         //检查是否退房成功
         try {
             Connection c = DBHGeneral.getConnection();
-            RoomDBH helper = new RoomDBH(c);
+            RoomDAO helper = new RoomDAO(c);
             helper.setID(roomID);
             String sql = "select * from Room where ID=?";
             ResultSet res = helper.query(sql);

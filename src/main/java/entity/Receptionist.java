@@ -2,7 +2,7 @@ package entity;
 
 import DAOHelper.DBHGeneral;
 import DAOHelper.OrdersDAO;
-import DAOHelper.RoomDBH;
+import DAOHelper.RoomDAO;
 
 import java.sql.SQLException;
 
@@ -20,8 +20,8 @@ public class Receptionist {
         ordersDBH.updateStatusByOrderID(orderID,"LIVING");
     }
     public void roomCheckout(String roomID) throws SQLException {
-        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
-        roomDBH.updateStatusByRoomID(roomID, "AVALIABLE");
+        RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
+        roomDAO.updateStatusByRoomID(roomID, "AVALIABLE");
 
         //TODO SHOW BILLS
     }
@@ -32,8 +32,8 @@ public class Receptionist {
     }
 
     public void changeRoomNumber(String roomID, String roomNumber) throws SQLException {
-        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
-        roomDBH.updateRoomNumberByRoomID(roomID, roomNumber);
+        RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
+        roomDAO.updateRoomNumberByRoomID(roomID, roomNumber);
     }
 
     public void extendCheckoutTimeByOrderID(String OrderID, String newDateEnd) throws SQLException {
@@ -42,13 +42,13 @@ public class Receptionist {
     }
 
     public void fixingRoomByRoomID(String roomID) throws SQLException {
-        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
-        roomDBH.updateStatusByRoomID(roomID,"FIXING");
+        RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
+        roomDAO.updateStatusByRoomID(roomID,"FIXING");
     }
 
     public void fixDoneByRoomID(String roomID) throws SQLException {
-        RoomDBH roomDBH = new RoomDBH(DBHGeneral.getConnection());
-        roomDBH.updateStatusByRoomID(roomID,"AVAILABLE");
+        RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
+        roomDAO.updateStatusByRoomID(roomID,"AVAILABLE");
     }
 
 

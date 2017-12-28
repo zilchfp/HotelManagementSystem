@@ -1,7 +1,7 @@
 package basicSetting;
 
 import DAOHelper.DBHGeneral;
-import DAOHelper.RoomDBH;
+import DAOHelper.RoomDAO;
 import entity.Room;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +24,7 @@ public class RoomInformationQuery extends HttpServlet {
         String IDOfSettingRoom = request.getParameter("IDOfSettingRoom");
         try {
             Connection connection = DBHGeneral.getConnection();
-            RoomDBH helper = new RoomDBH(connection);
+            RoomDAO helper = new RoomDAO(connection);
             Room resRoom = helper.roomQueryByID(IDOfSettingRoom);
             session.setAttribute("resultRoomOfSetting",resRoom);
             connection.close();

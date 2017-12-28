@@ -18,6 +18,7 @@ public class OrdersDAO {
     private String dateBegin;
     private String dateEnd;
     private String status;
+    private String type;
     private Connection connection;
 
     public OrdersDAO(Connection c) {
@@ -29,6 +30,7 @@ public class OrdersDAO {
         this.dateBegin = null;
         this.dateEnd = null;
         this.status = null;
+        this.type = null;
     }
     //数据库的增删查改
     //增
@@ -44,7 +46,8 @@ public class OrdersDAO {
         this.dateBegin = orders.getDateBegin();
         this.dateEnd = orders.getDateEnd();
         this.status = orders.getStatus();
-        String sql = "insert into Orders values (?,?,?,?,?,?,?)";
+        this.type = orders.getType();
+        String sql = "insert into Orders values (?,?,?,?,?,?,?,?)";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,this.OrderID);
         stm.setString(2,this.roomID);

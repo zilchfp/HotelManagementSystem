@@ -1,20 +1,3 @@
-
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-    <%--<title>Title</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<h1>--%>
-    <%--接待员账号增加--%>
-<%--</h1>--%>
-
-    <%--<br>--%>
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
