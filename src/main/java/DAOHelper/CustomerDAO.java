@@ -44,7 +44,8 @@ public class CustomerDAO {
         stm.setString(3,this.password);
         stm.setString(4,this.IDNumber);
         stm.setString(5,this.customerName);
-        return stm.execute();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
     //删
@@ -53,7 +54,8 @@ public class CustomerDAO {
         String sql = "delete from Customer where userID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,userID);
-        return stm.execute();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
     //查
@@ -82,6 +84,7 @@ public class CustomerDAO {
                     "where (Orders.status='LIVING')" +
                     "order by userID";
         PreparedStatement stm = connection.prepareStatement(sql);
+
         return stm.executeQuery();
     }
 

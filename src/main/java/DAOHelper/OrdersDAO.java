@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import static java.lang.System.out;
-
 public class OrdersDAO {
     private String OrderID;
     private String roomID;
@@ -34,7 +32,7 @@ public class OrdersDAO {
     }
     //数据库的增删查改
     //增
-    public void addOrder(Orders orders) throws SQLException {
+    public boolean addOrder(Orders orders) throws SQLException {
         if (orders.getOrderID() == null) {
             this.OrderID = GeneralHelp.getRandomUserID();  //FOR TestCase
         } else {
@@ -55,16 +53,18 @@ public class OrdersDAO {
         stm.setString(5,this.dateBegin);
         stm.setString(6,this.dateEnd);
         stm.setString(7,this.status);
-        stm.execute();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
     //删
-    public void deleteByID(String OrdersID) throws SQLException {
+    public boolean deleteByID(String OrdersID) throws SQLException {
         this.OrderID = OrdersID;
         String sql = "delete from Orders where OrderID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,OrderID);
-        stm.execute();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
     //查
@@ -86,47 +86,52 @@ public class OrdersDAO {
 
 
     //改
-    public void updateDateBeginByOrderID(String OrderID, String dateBegin) throws SQLException {
+    public boolean updateDateBeginByOrderID(String OrderID, String dateBegin) throws SQLException {
         String sql = "update Orders set dateBegin=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,dateBegin);
         stm.setString(2,OrderID);
-        stm.executeUpdate();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
-    public void updateDateEndByOrderID(String OrderID, String dateEnd) throws SQLException {
+    public boolean updateDateEndByOrderID(String OrderID, String dateEnd) throws SQLException {
         String sql = "update Orders set dateEnd=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,dateEnd);
         stm.setString(2,OrderID);
-        stm.executeUpdate();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
-    public void updateCustomerNameByOrderID(String OrderID, String customerName) throws SQLException {
+    public boolean updateCustomerNameByOrderID(String OrderID, String customerName) throws SQLException {
         String sql = "update Orders set customerName=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,customerName);
         stm.setString(2,OrderID);
-        stm.executeUpdate();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
-    public void updateStatusByOrderID(String OrderID, String status) throws SQLException {
+    public boolean updateStatusByOrderID(String OrderID, String status) throws SQLException {
         String sql = "update Orders set status=? where OrderID=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,status);
         stm.setString(2,OrderID);
-        stm.executeUpdate();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
-    public void singleUpdate(String setAttribute, String setValue,
-                              String whereAttribute, String whereValue) throws SQLException {
+    public boolean singleUpdate(String setAttribute, String setValue,
+                                String whereAttribute, String whereValue) throws SQLException {
         String sql = "update Orders set " +
                         setAttribute+"=? where " +
                         whereAttribute+"=?;";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,setValue);
         stm.setString(2,whereValue);
-        stm.executeUpdate();
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
     }
 
 
