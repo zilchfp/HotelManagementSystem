@@ -19,6 +19,7 @@ public class CustomerAccountModify extends HttpServlet {
         String usernameModify = request.getParameter("usernameModify");
         String passwordModify = request.getParameter("passwordModify");
         String IDNumberModify = request.getParameter("IDNumberModify");
+        String customerNameModify = request.getParameter("customerNameModify");
 
 //        if (usernameModify) {
 //            out.println("userNameModify is null");

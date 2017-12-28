@@ -1,6 +1,7 @@
 package DAOHelper;
 
 import entity.Customer;
+import entity.GeneralHelp;
 
 import java.sql.*;
 import java.util.Vector;
@@ -26,22 +27,33 @@ public class CustomerDAO {
 
     //数据库的增删查改操作
     //增
-    public void addCustomer(Customer c) throws SQLException {
-        this.userID = c.getUserID();
+    public boolean addCustomer(Customer c) throws SQLException {
+        if (c.getUserID() == null) {
+            this.userID = GeneralHelp.getRandomUserID();
+        } else {
+            this.userID = c.getUserID();  //For TestCase
+        }
         this.username = c.getUsername();
         this.password = c.getPassword();
         this.IDNumber = c.getIDNumber();
-        String sql = "insert into Customer values (?,?,?,?)";
-        Vector<String> attributeList = getAttributeList();
-        Helper.execute(connection, attributeList, sql);
+        this.customerName = c.getCustomerName();
+        String sql = "insert into Customer values (?,?,?,?,?)";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,this.userID);
+        stm.setString(2,this.username);
+        stm.setString(3,this.password);
+        stm.setString(4,this.IDNumber);
+        stm.setString(5,this.customerName);
+        return stm.execute();
     }
 
     //删
-    public void deleteByUserID(String userID) throws SQLException {
-        this.userID = userID;
+    public boolean deleteByUserID(String userID) throws SQLException {
+        //这涉及到外键约束，导致无法删除
         String sql = "delete from Customer where userID = ?";
-        Vector<String> attributeList = getAttributeList();
-        Helper.execute(connection, attributeList, sql);
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,userID);
+        return stm.execute();
     }
 
     //查

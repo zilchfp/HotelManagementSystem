@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
         boolean findCustomer = false;
         Connection conn;
         HttpSession session = request.getSession();
-
+        String nextURL = "", message = "";
         try {
             String username = request.getParameter("nameCustomerLogin");
             //数据库查询
@@ -40,21 +40,25 @@ public class Login extends HttpServlet {
                 if (passwordIsRight) {
                     Customer customer = new Customer(res);
                     session.setAttribute("LoginCustomer",customer);
-//                    out.println("add LoginCustomer");
                     customer.loginInitialize(request, response);
-                    findCustomer = true;
-                    RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginSuccess.jsp");
-                    rd.forward(request, response);
+
+                    nextURL = "/bookOnline/Index.jsp";
+                    message = "登录成功!欢迎您!即将为你跳转至主页。";
                 }
             }
             conn.close();
         } catch (SQLException e) {
+            nextURL = "/CustomerLogin.jsp";
+            message = "登录失败!账号或密码错误!3秒后跳转回登录界面";
             e.printStackTrace();
         }
-        if (!findCustomer) {
-            RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/LoginFail.jsp");
-            rd.forward(request, response);
-        }
+        request.setAttribute("nextURL",nextURL);
+        request.setAttribute("intermediateTimer",3);
+        request.setAttribute("message",message);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
+        rd.forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

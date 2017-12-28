@@ -35,10 +35,16 @@ public class ReportOfLivingCustomerQuery extends HttpServlet {
                 String roomID = r.getString("roomID");
                 String dateBegin = r.getString("dateBegin");
                 String dateEnd = r.getString("dateEnd");
-out.println(userID);
-out.println("ID number :" +IDNumber);
+
                 CustomerReport customerReport =
-                        new CustomerReport.Builder(userID).IDNumber(IDNumber).customerName(customerName).roomID(roomID).dateBegin(dateBegin).dateEnd(dateEnd).build();
+                                                new CustomerReport.
+                                                    Builder(userID).
+                                                    IDNumber(IDNumber).
+                                                    customerName(customerName).
+                                                    roomID(roomID).
+                                                    dateBegin(dateBegin).
+                                                    dateEnd(dateEnd).
+                                                    build();
                 customerReportArrayList.add(customerReport);
             }
             request.setAttribute("customerReportArrayList",customerReportArrayList);

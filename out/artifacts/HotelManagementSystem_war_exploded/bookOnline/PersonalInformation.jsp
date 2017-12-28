@@ -29,8 +29,8 @@
     </div>
 </div>
 <%
-    Customer customer = (Customer) session.getAttribute("LoginCustomer");
-    out.println(customer.getUsername());
+//    Customer customer = (Customer) session.getAttribute("LoginCustomer");
+//    out.println(customer.getUsername());
 %>
 <script type="text/javascript">
     //p for parent bar

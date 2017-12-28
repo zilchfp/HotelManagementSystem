@@ -14,10 +14,10 @@ public class Manager {
     private String gender;
 
 
-    public void addCustomerAccount(Customer customer) throws SQLException {
+    public boolean addCustomerAccount(Customer customer) throws SQLException {
         Connection c = DBHGeneral.getConnection();
         CustomerDAO customerDAO = new CustomerDAO(c);
-        customerDAO.addCustomer(customer);
+        return customerDAO.addCustomer(customer);
     }
 
     public void addRoom() {

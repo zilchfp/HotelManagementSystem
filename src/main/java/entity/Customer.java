@@ -52,6 +52,10 @@ public class Customer {
         this.IDNumber = null;
     }
 
+    public Customer() {
+
+    }
+
     //用户登录时的相关初始化工作
     public void loginInitialize(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -99,5 +103,29 @@ public class Customer {
 
     public String getIDNumber() {
         return IDNumber;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setIDNumber(String IDNumber) {
+        this.IDNumber = IDNumber;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }
