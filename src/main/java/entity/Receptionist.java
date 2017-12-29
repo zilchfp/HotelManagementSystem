@@ -36,9 +36,9 @@ public class Receptionist {
         roomDAO.updateRoomNumberByRoomID(roomID, roomNumber);
     }
 
-    public void extendCheckoutTimeByOrderID(String OrderID, String newDateEnd) throws SQLException {
+    public boolean extendCheckoutTimeByOrderID(String OrderID, String newDateEnd) throws SQLException {
         OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
-        ordersDBH.updateDateEndByOrderID(OrderID, newDateEnd);
+        return ordersDBH.updateDateEndByOrderID(OrderID, newDateEnd);
     }
 
     public void fixingRoomByRoomID(String roomID) throws SQLException {

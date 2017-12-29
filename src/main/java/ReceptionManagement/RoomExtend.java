@@ -2,6 +2,7 @@ package ReceptionManagement;
 
 import entity.Receptionist;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +20,26 @@ public class RoomExtend extends HttpServlet {
         String DateEndExtend = request.getParameter("DateEndExtend");
         out.println(DateEndExtend);
         Receptionist receptionist = new Receptionist();
+        boolean extendSuccessfully = false;
         try {
-            receptionist.extendCheckoutTimeByOrderID(orderIDExtend,DateEndExtend);
+            extendSuccessfully = receptionist.extendCheckoutTimeByOrderID(orderIDExtend,DateEndExtend);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        String nextURL, message;
+        if (extendSuccessfully) {
+            message = "续住成功! 3秒后跳转至续住管理界面";
+        } else {
+            message = "续住失败! 请重试! 3秒后跳转至续住管理界面";
+        }
+        nextURL = "/receptionManagement/RoomExtend.jsp";
+        request.setAttribute("nextURL",nextURL);
+        request.setAttribute("intermediateTimer",3);
+        request.setAttribute("message",message);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
+        rd.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

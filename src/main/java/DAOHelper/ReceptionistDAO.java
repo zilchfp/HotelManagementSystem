@@ -80,6 +80,14 @@ public class ReceptionistDAO {
         return receptionist;
     }
 
+    public ResultSet queryReceptionistByUsernamePassword(String username, String password) throws SQLException {
+        String sql = "select * from Receptionist where username=? and password=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,username);
+        stm.setString(2,password);
+        return stm.executeQuery();
+    };
+
     //改
     public void updateWholeReceptionistByID(String receptionistID) throws SQLException {
         //获取原来的接待员信息

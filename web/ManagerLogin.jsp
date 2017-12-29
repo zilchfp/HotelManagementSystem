@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zilchfp
-  Date: 17-12-4
-  Time: 下午7:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -50,7 +43,7 @@
             经理账户登录
         </h2>
 
-        <form action="basicSetting/Index.jsp" method="post">
+        <form action="/basicSetting/ManagerLogin.do" method="post">
             <div class="mdui-center" style="width: 500px;">
             <table style="justify-content: center;margin-left: auto;margin-right: auto;">
                 <tr><td>
@@ -58,7 +51,7 @@
                     </td>
                     <td>
                         <div class="mdui-textfield">
-                            <input class="mdui-textfield-input" type="text" placeholder="用户名"/>
+                            <input class="mdui-textfield-input" type="text" placeholder="用户名" name="username"/>
                         </div>
                     </td>
                 </tr>
@@ -66,7 +59,7 @@
                 <tr><td>密&nbsp;&nbsp;码：</td>
                     <td>
                         <div class="mdui-textfield">
-                            <input class="mdui-textfield-input"  type="password" placeholder="密码"/>
+                            <input class="mdui-textfield-input"  type="password" placeholder="密码" name="password"/>
                         </div>
                     </td>
                 </tr>
@@ -76,7 +69,7 @@
 
         <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" style="justify-content: center;margin-left: auto;margin-right: auto;width: 200px;" >登录
             <div class="main-btn-wrapper">
-                <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2" >登录</a>
+                <a href="ManagerLogin.jsp" class="mdui-btn main-btn mdui-ripple mdui-ripple-white mdui-m-r-2"  type="submit">登录</a>
             </div>
         </button>
 

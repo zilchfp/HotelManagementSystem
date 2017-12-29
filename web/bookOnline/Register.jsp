@@ -50,6 +50,12 @@
                         </div>
                         </td>
                     </tr>
+                    <div class="mdui-textfield">
+                        账号<textarea class="mdui-textfield-input" placeholder="账号"></textarea>
+                    </div>
+                    <div class="mdui-textfield">
+                        密码<textarea class="mdui-textfield-input" placeholder="密码"></textarea>
+                    </div>
 
                     <tr>
                     <div class="mdui-textfield">
@@ -71,9 +77,6 @@
                         </label>
                     </div>
                     </tr>
-                    <div class="mdui-textfield">
-                        密码<textarea class="mdui-textfield-input" placeholder="密码"></textarea>
-                    </div>
                     <div class="mdui-textfield">
                         身份证号码<textarea class="mdui-textfield-input" placeholder="身份证号码"></textarea>
                     </div>

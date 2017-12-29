@@ -5,8 +5,16 @@
 
 <div class="mdui-container main-container mdui-text-left">
     <h1>
-        客户账号修改
+        请输入要设置的客房ID
     </h1>
+    <form action="/basicSetting/" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">ID</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="IDOfSettingRoom"/>
+        </div>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
+
         请输入要修改的客户账号ID:<input type="text" size="10" name="userIDModify" required>
         客户姓名: <input type="text" size="10" name="usernameModify" >
         客户账号密码: <input type="text" size="10" name="passwordModify" >

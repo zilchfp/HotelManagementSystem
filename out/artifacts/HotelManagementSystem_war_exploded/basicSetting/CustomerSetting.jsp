@@ -12,7 +12,7 @@
 
         <div class="mdui-list" style="size: 100px">
             <a href="CustomerAccountAdd.jsp" class="mdui-list-item mdui-ripple">客户账号增加</a>
-            <a href="CustomerAccountModify.jsp" class="mdui-list-item mdui-ripple">客户账号修改</a>
+            <a href="CustomerAccountModifyID.jsp" class="mdui-list-item mdui-ripple">客户账号修改</a>
             <a href="CustomerAccountDelete.jsp" class="mdui-list-item mdui-ripple">客户账号删除</a>
         </div>
 
@@ -23,7 +23,7 @@
                 <input type="submit" class="mdui-btn main-btn mdui-ripple mdui-ripple-white" value="客户账号增加">
                 </form>
                 <br>
-                <form action="CustomerAccountModify.jsp" method="get" >
+                <form action="CustomerAccountModifyID.jsp" method="get" >
                     <input type="submit" class="mdui-btn main-btn mdui-ripple mdui-ripple-white" value="客户账号修改">
                 </form>
                 <br>

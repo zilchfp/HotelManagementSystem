@@ -17,7 +17,7 @@
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">客户密码</label>
-            <input type="text"  class="mdui-textfield-input" size="10" name="customerPasswordAdd"/>
+            <input type="password"  class="mdui-textfield-input" size="10" name="customerPasswordAdd"/>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">客户姓名</label>
