@@ -4,15 +4,19 @@
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
 
-
-<div class="mdui-container doc-container main-section" style="display: flex;flex-direction: column;">
-    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
-        <div class="mdui-list" style="size: 100px">
-            <a href="CustomerOrdersQuery.jsp" class="mdui-list-item mdui-ripple">订单查询</a>
-            <a href="CustomerOrdersModify.jsp" class="mdui-list-item mdui-ripple">订单修改</a>
+<div class="mdui-container main-container mdui-text-left">
+    <h1>
+        请输入要修改的订单ID号
+    </h1>
+    <form action="/basicSetting/CustomerOrdersModifyID.do" method="post">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">订单ID</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="IDOfOrderRoomModify"/>
         </div>
-    </div>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
 </div>
+
 
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">

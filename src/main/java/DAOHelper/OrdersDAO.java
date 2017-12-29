@@ -1,5 +1,6 @@
 package DAOHelper;
 
+import ReceptionManagement.PreservationCheckin;
 import entity.GeneralHelp;
 import entity.Orders;
 
@@ -123,6 +124,22 @@ public class OrdersDAO {
         stm.setString(2,OrderID);
         int a = stm.executeUpdate();
         return (a == 0 ? false : true);
+    }
+
+    public boolean updateOrderByID(String ID, Orders newOrder) throws SQLException {
+        String sql = "update Orders set roomID = ?,customerID = ?,customerName = ?," +
+                "dateBegin = ?,dateEnd = ?,status = ?,type = ? where OrderID = ?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,newOrder.getRoomID());
+        stm.setString(2,newOrder.getCustomerID());
+        stm.setString(3,newOrder.getCustomerName());
+        stm.setString(4,newOrder.getDateBegin());
+        stm.setString(5,newOrder.getDateEnd());
+        stm.setString(6,newOrder.getStatus());
+        stm.setString(7,newOrder.getType());
+        stm.setString(8,newOrder.getOrderID());
+        int n = stm.executeUpdate();
+        return (n == 0 ? false : true);
     }
 
     public boolean singleUpdate(String setAttribute, String setValue,

@@ -83,7 +83,7 @@ public class RoomDAO {
         return map;
     }
     public ResultSet getRoomUnavailableBetween(String dateBegin, String dateEnd) throws SQLException {
-        String sql ="select count(type),type from Room group by type";
+        String sql ="select count(type),type from Room group by type where ";
 
         PreparedStatement stm = connection.prepareStatement(sql);
         return stm.executeQuery();

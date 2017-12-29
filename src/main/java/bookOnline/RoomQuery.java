@@ -27,6 +27,19 @@ public class RoomQuery extends HttpServlet {
         String dateBegin = request.getParameter("dateBegin");
         String dateEnd = request.getParameter("dateEnd");
 
+        //Check the validation of the range of date
+        if (dateBegin.compareTo(dateEnd) > 0) {
+            String nextURL = null, message = null;
+            nextURL = "/bookOnline/RoomQuery.jsp";
+            message = "输入日期范围非法！ 请重新输入！ 3秒后跳转回可用房查询界面";
+
+            request.setAttribute("nextURL",nextURL);
+            request.setAttribute("intermediateTimer",3);
+            request.setAttribute("message",message);
+            RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
+            rd.forward(request, response);
+        }
+
         Connection connection = null;
         try {
             connection = DBHGeneral.getConnection();

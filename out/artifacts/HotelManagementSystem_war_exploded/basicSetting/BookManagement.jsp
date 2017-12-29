@@ -9,7 +9,7 @@
     <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
         <div class="mdui-list" style="size: 100px">
             <a href="CustomerOrdersQuery.jsp" class="mdui-list-item mdui-ripple">订单查询</a>
-            <a href=".jsp" class="mdui-list-item mdui-ripple">订单修改</a>
+            <a href="CustomerOrdersModify.jsp" class="mdui-list-item mdui-ripple">订单修改</a>
         </div>
     </div>
 </div>
