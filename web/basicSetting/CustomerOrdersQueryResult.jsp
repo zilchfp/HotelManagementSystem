@@ -6,7 +6,6 @@
 <jsp:include page="DrawerBar.html"></jsp:include>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<jsp:useBean id="Orders"--%>
 
 <%--Context--%>
 <div class="mdui-container main-container mdui-text-left">

@@ -17,18 +17,20 @@ public class Receptionist {
     //前台管理
     public void preservationCheckin(String orderID) throws SQLException {
         OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
-        ordersDBH.updateStatusByOrderID(orderID,"LIVING");
+        ordersDBH.updateStatusByOrderID(orderID,"在住");
     }
-    public void roomCheckout(String roomID) throws SQLException {
+    public boolean roomCheckout(String roomID) throws SQLException {
         RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
-        roomDAO.updateStatusByRoomID(roomID, "AVALIABLE");
-
-        //TODO SHOW BILLS
+        return roomDAO.updateStatusByRoomID(roomID, "可用");
+    }
+    public boolean calculateBillByOrderID(String orderID) throws SQLException {
+        OrdersDAO ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
+        return ordersDAO.updateOrderAccountByID(orderID);
     }
 
-    public void changeRoomByOrderID(String orderID, String newRoomID) throws SQLException {
+    public boolean changeRoomByOrderID(String orderID, String newRoomID) throws SQLException {
         OrdersDAO ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
-        ordersDAO.singleUpdate("roomID",newRoomID,"OrderID",orderID);
+        return ordersDAO.singleUpdate("roomID",newRoomID,"OrderID",orderID);
     }
 
     public void changeRoomNumber(String roomID, String roomNumber) throws SQLException {

@@ -3,14 +3,6 @@ package entity;
 import javax.swing.plaf.nimbus.State;
 import java.util.Random;
 
-enum RoomState {
-    AVAILABLE, OCCUPIED, PRESERVED, LOCKED
-
-}
-
-enum TYPE {
-    STANDARD, DOUBLE, TRIPE, FAMILY
-}
 
 public class Room {
     private String ID;
@@ -20,25 +12,6 @@ public class Room {
     private String direction;
     private String description;
     private String status;
-    private RoomState roomState = RoomState.LOCKED;
-
-
-    //
-    public void lockRoom() {
-        setRoomState(RoomState.LOCKED);
-        TYPE s = TYPE.valueOf("STANDARD");
-        if (s == TYPE.STANDARD) {
-
-        }
-    }
-
-    public RoomState getRoomState() {
-        return roomState;
-    }
-
-    public void setRoomState(RoomState roomState) {
-        this.roomState = roomState;
-    }
 
 
     //PRIVATE MEMBER

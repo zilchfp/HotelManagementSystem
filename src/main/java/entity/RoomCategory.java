@@ -5,6 +5,7 @@ public class RoomCategory {
     private double price;
     private int totalNumber;
     private double score;
+    private int lockedNumber;
 
 
     public RoomCategory() {
@@ -29,7 +30,7 @@ public class RoomCategory {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     public double getPrice() {
@@ -46,5 +47,13 @@ public class RoomCategory {
 
     public void setTotalNumber(int totalNumber) {
         this.totalNumber = totalNumber;
+    }
+
+    public int getLockedNumber() {
+        return lockedNumber;
+    }
+
+    public void setLockedNumber(int lockedNumber) {
+        this.lockedNumber = lockedNumber;
     }
 }

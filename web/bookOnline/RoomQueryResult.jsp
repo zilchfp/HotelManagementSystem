@@ -10,34 +10,29 @@
             空房查询结果
         </h1>
 
-
-        <div class="mdui-table-fluid">
-            <table class="mdui-table mdui-table-hoverable mdui-table-selectable"" >
-                <thead>
-                <tr>
-                    <th>房间类型</th>
-                    <th>房间数量</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="allType" items="${requestScope.AvailableQueryResult}"
-                           varStatus="status" >
-                    <tr>
-                        <td>${allType.key}</td>
-                        <td>${allType.value}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-
-
-
-
-
         <form action="BookRoom.jsp" method="post" >
-<br>
-            <input type="submit" value="预定">
+            <div class="mdui-table-fluid">
+                <%--<table class="mdui-table mdui-table-hoverable mdui-table-selectable" >--%>
+                <table class="mdui-table mdui-table-hoverable" >
+                    <thead>
+                    <tr>
+                        <th>房间类型</th>
+                        <th>房间数量</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="allType" items="${requestScope.AvailableQueryResult}"
+                               varStatus="status" >
+                        <tr>
+                            <td>${allType.key}</td>
+                            <td>${allType.value}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">预定</button>
         </form>
 
 

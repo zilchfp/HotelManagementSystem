@@ -1,6 +1,7 @@
 package basicSetting;
 
 import DAOHelper.DBHGeneral;
+import DAOHelper.RoomCategoryDAO;
 import DAOHelper.RoomDAO;
 import entity.Room;
 
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static java.lang.System.out;
 
@@ -28,6 +31,11 @@ public class RoomInformationQuery extends HttpServlet {
             Room resRoom = helper.roomQueryByID(IDOfSettingRoom);
             session.setAttribute("resultRoomOfSetting",resRoom);
             connection.close();
+
+            //获取全部房间类型属性
+            RoomCategoryDAO roomCategoryDAO = new RoomCategoryDAO();
+            ArrayList<String> allRoomType =  roomCategoryDAO.getAllCategory();
+            request.setAttribute("allRoomType",allRoomType);
 
             RequestDispatcher rd = request.getRequestDispatcher("/basicSetting/RoomInformationSetting.jsp");
             rd.forward(request, response);

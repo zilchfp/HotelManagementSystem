@@ -16,7 +16,7 @@ public class Manager {
 
     public boolean addCustomerAccount(Customer customer) throws SQLException {
         Connection c = DBHGeneral.getConnection();
-        CustomerDAO customerDAO = new CustomerDAO(c);
+        CustomerDAO customerDAO = new CustomerDAO();
         return customerDAO.addCustomer(customer);
     }
 

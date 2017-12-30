@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -60,6 +61,13 @@
             <input class="mdui-textfield-input" type="text" name="roomType"
                    value=<jsp:getProperty name="resultRoomOfSetting" property="type"></jsp:getProperty>>
         </div>
+
+        <%--<select class="mdui-select" id="roomTypeSelect" name="roomTypeTest">--%>
+            <%--<c:forEach var="t" items="${requestScope.allRoomType}"--%>
+                       <%--varStatus="status" >--%>
+                <%--<option value=t>${t}</option>--%>
+            <%--</c:forEach>--%>
+        <%--</select>--%>
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">楼层</label>
             <input class="mdui-textfield-input" type="text" name="roomFloor"
@@ -90,6 +98,27 @@
 </div>
 
 
+<%--默认选项设置--%>
+<script type="text/javascript">
+    var inst = new mdui.Select('#roomTypeSelect');
+//    var opts = inst.options;
+    var v = <jsp:getProperty name="resultRoomOfSetting" property="type"></jsp:getProperty>;
+    for(var i=0; i < inst.options.length; i++)
+    {
+        if(inst.options[i].value === '标准间') {
+            inst.selectedIndex = i;
+            break;
+        }
+    }
+    mdui.mutation();
+    var o = document.getElementById("roomTypeSelect");
+    o.setAttribute(options[2],"selected");
+    o.setAttribute(options[3],"selected");
+
+    var $$ = mdui.JQ;
+    $$('roomTypeSelect'),
+</script>
+
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
     //p for parent bar
@@ -104,7 +133,6 @@
 
 <script type="text/javascript">
     var $$ = mdui.JQ;
-
     $$(function () {
         // appbar 自动隐藏
         var $appbar = $$('.mdui-appbar');

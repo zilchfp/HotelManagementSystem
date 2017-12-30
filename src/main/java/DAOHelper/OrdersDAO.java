@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+
+import static java.lang.System.out;
 
 public class OrdersDAO {
     private String OrderID;
@@ -20,6 +24,7 @@ public class OrdersDAO {
     private String dateEnd;
     private String status;
     private String type;
+    private double account;
     private Connection connection;
 
     public OrdersDAO(Connection c) {
@@ -32,6 +37,7 @@ public class OrdersDAO {
         this.dateEnd = null;
         this.status = null;
         this.type = null;
+        this.account = 0;
     }
     //数据库的增删查改
     //增
@@ -142,6 +148,35 @@ public class OrdersDAO {
         return (n == 0 ? false : true);
     }
 
+    public boolean updateOrderAccountByID(String orderID) throws SQLException {
+        String sql = "select * " +
+                     "from Orders,RoomCategory " +
+                     "where Orders.type = RoomCategory.name and OrderID=? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,orderID);
+        ResultSet r = stm.executeQuery();
+        int n = 0;
+        while (r.next()) {
+            out.println("test");
+            //TODO LIST
+            //Calculate the days between the dates
+//            LocalDate start = LocalDate.parse("2017-01-01");
+//            LocalDate end = LocalDate.parse("2017-01-16");
+//            int days = Days.daysBetween(start, end).getDays();
+            int days = 1;
+            double price = r.getDouble("price");
+            double account = days * price;
+            out.println(account);
+            String sqlUpdate = "UPDATE Orders SET account = ? WHERE OrderID = ? ";
+            PreparedStatement stmUpdate = connection.prepareStatement(sqlUpdate);
+            stmUpdate.setDouble(1,account);
+            stmUpdate.setString(2,orderID);
+            n = stmUpdate.executeUpdate();
+        }
+        return (n == 0 ? false : true);
+    }
+
+
     public boolean singleUpdate(String setAttribute, String setValue,
                                 String whereAttribute, String whereValue) throws SQLException {
         String sql = "update Orders set " +
@@ -193,6 +228,30 @@ public class OrdersDAO {
     //SETTER AND GETTER
     public String getOrderID() {
         return OrderID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
     public void setOrderID(String orderID) {

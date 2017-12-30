@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
             String username = request.getParameter("nameCustomerLogin");
             //数据库查询
             conn = DBHGeneral.getConnection();
-            CustomerDAO helper = new CustomerDAO(conn);
+            CustomerDAO helper = new CustomerDAO();
             ResultSet res = helper.getAllCustomers();
 
             //查询结果处理

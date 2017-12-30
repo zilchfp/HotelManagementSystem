@@ -57,7 +57,7 @@ class CustomerDAOTest {
     @BeforeEach
     void setUp() throws SQLException {
         MockitoAnnotations.initMocks(this);
-        this.customerDAO = new CustomerDAO(connection);
+        this.customerDAO = new CustomerDAO();
         customer.setUserID(targetUserID);
         customer.setUsername(targetUsername);
         customer.setPassword(targetPassword);
@@ -110,27 +110,24 @@ class CustomerDAOTest {
     void updateUsername() throws SQLException {
         String newUsername = "newTestName";
         customerDAO.updateUsername(newUsername, targetUserID);
-        ResultSet r = customerDAO.queryByUserID(targetUserID);
-        r.next();
-        assertEquals(newUsername,r.getString("username"));
+        Customer r = customerDAO.queryByUserID(targetUserID);
+        assertEquals(newUsername,r.getUsername());
     }
 
     @Test
     void updatePassword() throws SQLException {
         String newPassword = "newTestPassword";
         customerDAO.updatePassword(newPassword, targetUserID);
-        ResultSet r = customerDAO.queryByUserID(targetUserID);
-        r.next();
-        assertEquals(newPassword,r.getString("password"));
+        Customer r = customerDAO.queryByUserID(targetUserID);
+        assertEquals(newPassword,r.getPassword());
     }
 
     @Test
     void updateIDNumber() throws SQLException {
         String newIDNumber = "9999999";
         customerDAO.updateIDNumber(newIDNumber, targetUserID);
-        ResultSet r = customerDAO.queryByUserID(targetUserID);
-        r.next();
-        assertEquals(newIDNumber,r.getString("IDNumber"));
+        Customer r = customerDAO.queryByUserID(targetUserID);
+        assertEquals(newIDNumber,r.getIDNumber());
     }
 
 

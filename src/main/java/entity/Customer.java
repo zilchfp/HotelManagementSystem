@@ -66,7 +66,7 @@ public class Customer {
 
     public void register() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
-        CustomerDAO customerDAO = new CustomerDAO(connection);
+        CustomerDAO customerDAO = new CustomerDAO();
         customerDAO.addCustomer(this);
         connection.close();
     }
@@ -74,7 +74,7 @@ public class Customer {
     public void remove() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
         String userID = this.getUserID();
-        CustomerDAO customerDAO = new CustomerDAO(connection);
+        CustomerDAO customerDAO = new CustomerDAO();
         customerDAO.deleteByUserID(this.getUserID());
         connection.close();
     }

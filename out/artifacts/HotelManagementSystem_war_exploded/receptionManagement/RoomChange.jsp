@@ -6,7 +6,7 @@
     <h1>
         请输入要换房的相关信息
     </h1>
-    <form action="/ReceptionManagement/RoomChange" method="post" >
+    <form action="/ReceptionManagement/RoomChange.do" method="post" >
         <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">订单ID</label>
             <input type="text"  class="mdui-textfield-input" size="10" name="orderIDChangeRoom"/>

@@ -70,7 +70,7 @@ public class RoomDAO {
         }
         return resultRoom;
     }
-    public HashMap<String, Integer> getRoomTypeWithNumber() throws SQLException {
+    public HashMap<String, Integer> getAllRoomTypeWithNumber() throws SQLException {
         String sql ="select type,COUNT(ID) from Room group by type order by type;";
         PreparedStatement stm = connection.prepareStatement(sql);
         ResultSet resultSet = stm.executeQuery();
@@ -84,10 +84,10 @@ public class RoomDAO {
     }
     public ResultSet getRoomUnavailableBetween(String dateBegin, String dateEnd) throws SQLException {
         String sql ="select count(type),type from Room group by type where ";
-
         PreparedStatement stm = connection.prepareStatement(sql);
         return stm.executeQuery();
     }
+
     //***************************************************************
     //修改
     //***************************************************************
@@ -112,12 +112,13 @@ public class RoomDAO {
         int n = stm.executeUpdate();
         return (n == 0 ? false : true);
     }
-    public void updateStatusByRoomID(String roomID, String status) throws SQLException {
+    public boolean updateStatusByRoomID(String roomID, String status) throws SQLException {
         String sql = " update Room set status=? where ID=?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,status);
         stm.setString(2,roomID);
-        stm.executeUpdate();
+        int n = stm.executeUpdate();
+        return (n == 0 ? false : true);
     }
     public void updateRoomNumberByRoomID(String roomID, String roomNumber) throws SQLException {
         String sql = " update Room set number = ? where ID=?";

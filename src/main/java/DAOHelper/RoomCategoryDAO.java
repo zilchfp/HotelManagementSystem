@@ -1,17 +1,23 @@
 package DAOHelper;
 
 import ReceptionManagement.PreservationCheckin;
+import entity.Room;
+import entity.RoomCategory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RoomCategoryDAO {
     private String name;
     private double price;
     private int totalNumber;
     private double score;
+    private int lockedNumber;
     private Connection connection;
+
 
     public RoomCategoryDAO() throws SQLException {
         this.name = null;
@@ -22,7 +28,6 @@ public class RoomCategoryDAO {
     }
 
     //数据库增删查改
-
     //增
     public boolean addRoomCategory(String name, double price, int totalNumber, double score) throws SQLException {
         String sql = "INSERT  INTO RoomCategory VALUES (?,?,?,?)";
@@ -39,8 +44,32 @@ public class RoomCategoryDAO {
     //删
 
     //查
+    public ArrayList<String> getAllCategory() throws SQLException {
+        String sql = "SELECT name from RoomCategory";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<String> answer = new ArrayList<>();
+        while (r.next()){
+            answer.add(r.getString(1));
+        }
+        return answer;
+    }
+    public ArrayList<RoomCategory> getRoomPreservationInitialize() throws SQLException {
+        String sql = "SELECT name,totalNumber,lockedNumber from RoomCategory order by name ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<RoomCategory> answer = new ArrayList<>();
+        while (r.next()){
+            RoomCategory c = new RoomCategory();
+            c.setName(r.getString(1));
+            c.setTotalNumber(r.getInt(2));
+            c.setLockedNumber(r.getInt(3));
+            answer.add(c);
+        }
+        return answer;
+    }
 
-    //改动
+    //改
 
 
     //Getter And Setter
@@ -84,5 +113,13 @@ public class RoomCategoryDAO {
 
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    public int getLockedNumber() {
+        return lockedNumber;
+    }
+
+    public void setLockedNumber(int lockedNumber) {
+        this.lockedNumber = lockedNumber;
     }
 }

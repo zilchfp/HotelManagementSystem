@@ -31,15 +31,15 @@ public class CustomerAccountModify extends HttpServlet {
             Connection c = DBHGeneral.getConnection();
 
             if (!usernameModify.equals("")) {
-                CustomerDAO customerDAO = new CustomerDAO(c);
+                CustomerDAO customerDAO = new CustomerDAO();
                 customerDAO.updateUsername(usernameModify, userIDModify);
             } ;
             if (!passwordModify.equals("")) {
-                CustomerDAO customerDAO = new CustomerDAO(c);
+                CustomerDAO customerDAO = new CustomerDAO();
                 customerDAO.updatePassword(passwordModify, userIDModify);
             };
             if (!IDNumberModify.equals("")) {
-                CustomerDAO customerDAO = new CustomerDAO(c);
+                CustomerDAO customerDAO = new CustomerDAO();
                 customerDAO.updateIDNumber(IDNumberModify, userIDModify);
             };
 

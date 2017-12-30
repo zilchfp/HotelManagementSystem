@@ -9,10 +9,20 @@ public class Orders {
     private String dateEnd;
     private String status;
     private String type;
+    private String account;
 
 
 
     //SETTER AND GETTER
+
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getType() {
         return type;

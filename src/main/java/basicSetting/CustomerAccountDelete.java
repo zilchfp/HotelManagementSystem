@@ -20,8 +20,7 @@ public class CustomerAccountDelete extends HttpServlet {
         String message, nextURL;
         boolean deleteFlag = false;
         try {
-            Connection c = DBHGeneral.getConnection();
-            CustomerDAO customerDAO = new CustomerDAO(c);
+            CustomerDAO customerDAO = new CustomerDAO();
             deleteFlag = customerDAO.deleteByUserID(customerIDDelete);
         } catch (SQLException e) {
             e.printStackTrace();

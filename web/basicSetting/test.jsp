@@ -17,6 +17,15 @@
 <h1>
     body2
 </h1>
+<select class="mdui-select" id="demo-js">
+    <option value="1">State 1</option>
+    <option value="2">State 2</option>
+    <option value="3" disabled>State 3</option>
+    <option value="4">State 4</option>
+    <option value="5">State 5</option>
+    <option value="6">State 6</option>
+</select>
+
 </body>
 </html>
 <script src="../MDUI_files/mdui.min.js"></script>
@@ -30,6 +39,9 @@
     RoomTypeSetting.setAttribute('class',active);
 </script>
 
+<script>
+    var inst = new mdui.Select('#demo-js');
+</script>
 <script type="text/javascript">
     var $$ = mdui.JQ;
 

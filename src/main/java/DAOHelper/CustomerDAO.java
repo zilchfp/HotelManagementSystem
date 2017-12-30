@@ -4,7 +4,12 @@ import entity.Customer;
 import entity.GeneralHelp;
 
 import java.sql.*;
-import java.util.Vector;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
+
+import static java.lang.System.out;
 
 public class CustomerDAO {
     private String userID;
@@ -12,11 +17,10 @@ public class CustomerDAO {
     private String password;
     private String IDNumber;
     private String customerName;
-    private Connection connection;
+    private Connection connection = DBHGeneral.getConnection();
 
-    public CustomerDAO(Connection c) {
+    public CustomerDAO() throws SQLException {
         //拓展性不好，当属性数量增长时，容易代码膨胀
-        this.connection = c;
         this.userID = null;
         this.username = null;
         this.password = null;
@@ -65,29 +69,69 @@ public class CustomerDAO {
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
-    public ResultSet queryByUserID(String userID) throws SQLException {
+    public Customer queryByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "select * from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
-        return Helper.getResult(connection, attributeList, sql);
+        ResultSet r = Helper.getResult(connection, attributeList, sql);
+        Customer c = new Customer();
+        boolean isEmpty = true;
+        while (r.next()) {
+            isEmpty = false;
+            c.setUserID(r.getString("userID"));
+            c.setUsername(r.getString("username"));
+            c.setPassword(r.getString("password"));
+            c.setIDNumber(r.getString("IDNumber"));
+            c.setCustomerName(r.getString("customerName"));
+        }
+        if (isEmpty) return null;
+            else return c;
     }
     public ResultSet getAllCustomers() throws SQLException {
         String sql = "select * from Customer";
         Vector<String> attributeList = getAttributeList();
         return Helper.getResult(connection, attributeList, sql);
     }
+    public ArrayList<String> getAllCustomersID() throws SQLException {
+        String sql = "select userID from Customer";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<String> ans = new ArrayList<>();
+        while (r.next()) {
+            ans.add(r.getString(1));
+        }
+        return ans;
+    }
     public ResultSet queryCustomersLiving() throws SQLException {
         String sql ="select userID,IDNumber,Customer.customerName,roomID,dateBegin,dateEnd " +
                     "from Customer " +
                     "left join Orders " +
                     "on Customer.userID = Orders.customerID " +
-                    "where (Orders.status='LIVING')" +
+                    "where (Orders.status='在住') and (dateEnd >= ?)" +
                     "order by userID";
         PreparedStatement stm = connection.prepareStatement(sql);
-
+        stm.setString(1,Helper.getToday());
         return stm.executeQuery();
     }
-
+    public HashMap<String,Integer> getUnavailableRoomTypeWithNumber() throws SQLException {
+        String sql ="select type,COUNT(roomID) as number " +
+                    "from Customer " +
+                    "left join Orders " +
+                    "on Customer.userID = Orders.customerID " +
+                    "where Orders.status='在住' and dateEnd >= ? " +
+                    "group by type;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,Helper.getToday());
+        ResultSet resultSet = stm.executeQuery();
+        HashMap<String,Integer> map = new HashMap<>();
+        while (resultSet.next()) {
+            String type = resultSet.getString(1);
+            int num = resultSet.getInt(2);
+            map.put(type,num);
+            out.println(type + "  " + num);
+        }
+        return map;
+    }
     //改
     public void updateUsername(String Username, String ID) throws SQLException {
         String sql = " update Customer set username=? where userID=?";

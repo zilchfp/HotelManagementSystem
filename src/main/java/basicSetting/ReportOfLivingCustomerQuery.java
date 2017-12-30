@@ -24,7 +24,7 @@ import static java.lang.System.out;
 public class ReportOfLivingCustomerQuery extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            CustomerDAO customerDAO = new CustomerDAO(DBHGeneral.getConnection());
+            CustomerDAO customerDAO = new CustomerDAO();
             ArrayList<CustomerReport> customerReportArrayList = new ArrayList<>();
 
             ResultSet r = customerDAO.queryCustomersLiving();
