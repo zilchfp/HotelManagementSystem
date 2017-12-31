@@ -15,7 +15,7 @@ public class RoomCategoryDAO {
     private double price;
     private int totalNumber;
     private double score;
-    private int lockedNumber;
+    private int lockedNumber = 0;
     private Connection connection;
 
 
@@ -30,12 +30,13 @@ public class RoomCategoryDAO {
     //数据库增删查改
     //增
     public boolean addRoomCategory(String name, double price, int totalNumber, double score) throws SQLException {
-        String sql = "INSERT  INTO RoomCategory VALUES (?,?,?,?)";
+        String sql = "INSERT  INTO RoomCategory VALUES (?,?,?,?,?) ";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,name);
         stm.setDouble(2,price);
         stm.setInt(3,totalNumber);
         stm.setDouble(4,score);
+        stm.setInt(5,lockedNumber);
         int n =  stm.executeUpdate();
         return (n == 0 ? false : true);
     }

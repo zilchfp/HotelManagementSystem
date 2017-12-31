@@ -92,7 +92,16 @@ public class OrdersDAO {
         ResultSet resultSet = stm.executeQuery();
         return resultSet;
     }
-
+    public ArrayList<String> getAllOrdersID() throws SQLException {
+        String sql = "SELECT OrderID from Orders ORDER BY OrderID";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<String> ans = new ArrayList<>();
+        while (r.next()) {
+            ans.add(r.getString(1));
+        }
+        return ans;
+    }
 
 
     //改

@@ -87,6 +87,16 @@ public class RoomDAO {
         PreparedStatement stm = connection.prepareStatement(sql);
         return stm.executeQuery();
     }
+    public ArrayList<String> getAllRoomID() throws SQLException {
+        String sql = "select ID from Room ORDER BY ID ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<String> ans = new ArrayList<>();
+        while (r.next()) {
+            ans.add(r.getString(1));
+        }
+        return ans;
+    }
 
     //***************************************************************
     //修改

@@ -16,49 +16,21 @@
         请选择要设置的客户账号ID
     </h1>
 
-<form action="/basicSetting/CustomerAccountModifyID.do" method="post">
-<%--<div class="mdui-textfield mdui-textfield-floating-label">--%>
-    <%--<label class="mdui-textfield-label">ID</label>--%>
-    <%--<input type="text"  class="mdui-textfield-input" size="10" name="IDOfSettingRoom"/>--%>
-<%--</div>--%>
-    房间ID:
-    <select class="mdui-select" id="roomTypeSelect" name="queryRoomID">
-        <c:forEach var="roomID" items="${requestScope.AllRoomID}"
-                   varStatus="status" >
-            <option>${roomID}</option>
-        </c:forEach>
-    </select>
+    <form action="/basicSetting/CustomerAccountModifyID.do" method="post">
+        客户账户ID:
+        <select class="mdui-select" id="roomTypeSelect" name="queryRoomID">
+            <c:forEach var="roomID" items="${requestScope.AllRoomID}"
+                       varStatus="status" >
+                <option>${roomID}</option>
+            </c:forEach>
+        </select>
 
-<button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
-</form>
-
-<form action="/basicSetting/CustomerAccountModify.do" method="post" >
-<div class="mdui-textfield mdui-textfield-floating-label">
-    <label class="mdui-textfield-label">客户账号名</label>
-    <input type="text"  class="mdui-textfield-input" size="10" name="customerUsernameAdd"/>
-</div>
-<div class="mdui-textfield mdui-textfield-floating-label">
-    <label class="mdui-textfield-label">客户密码</label>
-    <input type="text"  class="mdui-textfield-input" size="10" name="customerPasswordAdd"/>
-</div>
-<div class="mdui-textfield mdui-textfield-floating-label">
-    <label class="mdui-textfield-label">客户姓名</label>
-    <input type="text"  class="mdui-textfield-input" size="10" name="customerNameAdd"/>
-</div>
-<div class="mdui-textfield mdui-textfield-floating-label">
-    <label class="mdui-textfield-label">客户身份证</label>
-    <input type="text"  class="mdui-textfield-input" size="10" name="customerIDNumberAdd"/>
-</div>
-<button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
-</form>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
 </div>
 
 
 
-</div>
-
-
-</div>
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
 //p for parent bar

@@ -2,6 +2,7 @@ package ReceptionManagement;
 
 import DAOHelper.DBHGeneral;
 import DAOHelper.ReceptionistDAO;
+import entity.GeneralHelp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,6 +35,11 @@ public class Login extends HttpServlet {
 
 
         if (LoginSuccessfully) {
+            try {
+                GeneralHelp.loginInitializatjion(request);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             message = "欢迎您! 接待员账号登录成功! 即将为您跳转至接待员管理界面.";
             nextURL = "/receptionManagement/Index.jsp";
         } else {

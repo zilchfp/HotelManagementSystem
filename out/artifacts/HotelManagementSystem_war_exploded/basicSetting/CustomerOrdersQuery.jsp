@@ -1,19 +1,22 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
 
-<%--Context--%>
 <div class="mdui-container main-container mdui-text-left">
     <h1>
-        请输入要查询的客户ID号
+        请选择要查询的客户ID号
     </h1>
+
     <form action="/basicSetting/CustomerOrdersQuery.do" method="post">
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">客户ID</label>
-            <input type="text"  class="mdui-textfield-input" size="10" name="IDOfCustomerRoomQuery"/>
-        </div>
+        客户账户ID:
+        <select class="mdui-select" id="roomTypeSelect" name="IDOfCustomerRoomQuery">
+            <c:forEach var="CustomerID" items="${sessionScope.AllCustomerID}"
+                       varStatus="status" >
+                <option>${CustomerID}</option>
+            </c:forEach>
+        </select>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </div>

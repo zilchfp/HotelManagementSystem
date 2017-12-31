@@ -2,10 +2,7 @@
 
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
-<!-- 首屏 2-->
-<%--<div class="mdui-container doc-container main-section mdui-color-theme" style="display: flex;flex-direction: column;">--%>
 
-<%--Context--%>
 <div class="mdui-container main-container mdui-text-left">
     <h1>
         客户账号增加

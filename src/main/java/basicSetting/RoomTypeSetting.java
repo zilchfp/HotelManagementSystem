@@ -27,6 +27,7 @@ public class RoomTypeSetting extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         if (addSuccessfully) {
             message = "房间类型添加成功！ 3秒后返回客房类型设置页面。";
         } else {

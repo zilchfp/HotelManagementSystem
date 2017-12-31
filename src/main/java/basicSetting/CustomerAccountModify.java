@@ -21,12 +21,6 @@ public class CustomerAccountModify extends HttpServlet {
         String IDNumberModify = request.getParameter("IDNumberModify");
         String customerNameModify = request.getParameter("customerNameModify");
 
-//        if (usernameModify) {
-//            out.println("userNameModify is null");
-//        } else {
-//            out.println("usernameModify:"+usernameModify+"__");
-//        }
-
         try {
             Connection c = DBHGeneral.getConnection();
 

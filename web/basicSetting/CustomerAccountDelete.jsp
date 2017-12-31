@@ -1,17 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <jsp:include page="DrawerBar.html"></jsp:include>
 
-<%--Context--%>
 <div class="mdui-container main-container mdui-text-left">
     <h1>
-        请输入要删除的客户账号ID
+        请选择要删除的客户账号ID
     </h1>
     <form action="/basicSetting/CustomerAccountDelete.do" method="post" >
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">ID</label>
-            <input type="text"  class="mdui-textfield-input" size="10" name="customerIDDelete"/>
-        </div>
+        客户ID:<select class="mdui-select" id="roomTypeSelect" name="deleteCusotmerID">
+            <c:forEach var="CustomerID" items="${sessionScope.AllCustomerID}"
+                       varStatus="status" >
+                <option>${CustomerID}</option>
+            </c:forEach>
+        </select>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </div>
