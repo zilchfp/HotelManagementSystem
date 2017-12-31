@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RoomCategoryDAO {
     private String name;
@@ -52,6 +53,16 @@ public class RoomCategoryDAO {
         ArrayList<String> answer = new ArrayList<>();
         while (r.next()){
             answer.add(r.getString(1));
+        }
+        return answer;
+    }
+    public HashMap<String,Double> getTypeAndPrice() throws SQLException {
+        String sql = "SELECT name,price from RoomCategory";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        HashMap<String,Double> answer = new HashMap<>();
+        while (r.next()){
+            answer.put(r.getString(1),r.getDouble(2));
         }
         return answer;
     }

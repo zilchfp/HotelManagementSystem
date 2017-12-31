@@ -1,7 +1,6 @@
 package DAOHelper;
 
-import ReceptionManagement.PreservationCheckin;
-import entity.GeneralHelp;
+import entity.Helper;
 import entity.Orders;
 
 import java.sql.Connection;
@@ -10,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
-import org.joda.time.Days;
-import org.joda.time.LocalDate;
 
 import static java.lang.System.out;
 
@@ -43,7 +40,7 @@ public class OrdersDAO {
     //增
     public boolean addOrder(Orders orders) throws SQLException {
         if (orders.getOrderID() == null) {
-            this.OrderID = GeneralHelp.getRandomUserID();  //FOR TestCase
+            this.OrderID = Helper.getRandomUserID();  //FOR TestCase
         } else {
             this.OrderID = orders.getOrderID();
         }
@@ -54,7 +51,7 @@ public class OrdersDAO {
         this.dateEnd = orders.getDateEnd();
         this.status = orders.getStatus();
         this.type = orders.getType();
-        String sql = "insert into Orders values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into Orders values (?,?,?,?,?,?,?,?,?)";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1,this.OrderID);
         stm.setString(2,this.roomID);
@@ -63,6 +60,8 @@ public class OrdersDAO {
         stm.setString(5,this.dateBegin);
         stm.setString(6,this.dateEnd);
         stm.setString(7,this.status);
+        stm.setString(8,this.type);
+        stm.setDouble(9,0);
         int a = stm.executeUpdate();
         return (a == 0 ? false : true);
     }

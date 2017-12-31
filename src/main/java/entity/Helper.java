@@ -11,7 +11,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GeneralHelp {
+public class Helper {
+
+    public static void loginedCustomer(HttpServletRequest request, String customerID) throws SQLException {
+        Customer LoginedCustomer = new Customer();
+        CustomerDAO customerDAO = new CustomerDAO();
+        LoginedCustomer = customerDAO.queryByUserID(customerID);
+        HttpSession session = request.getSession();
+        session.setAttribute("LoginedCustomer",LoginedCustomer);;
+    }
+
+
     public static void loginInitializatjion(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
         CustomerDAO customerDAO = new CustomerDAO();

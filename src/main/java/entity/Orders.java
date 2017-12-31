@@ -11,6 +11,17 @@ public class Orders {
     private String type;
     private String account;
 
+    public Orders() {
+        orderID = null;
+        roomID = null;
+        customerID = null;
+        customerName = null;
+        dateBegin = null;
+        dateEnd = null;
+        status = null;
+        type = null;
+        account = null;
+    }
 
 
     //SETTER AND GETTER

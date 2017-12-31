@@ -3,6 +3,7 @@ package bookOnline;
 import DAOHelper.CustomerDAO;
 import DAOHelper.DBHGeneral;
 import entity.Customer;
+import entity.Helper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,9 +39,8 @@ public class Login extends HttpServlet {
                 String resPassword = res.getString("password");
                 boolean passwordIsRight = passwordCustomerLogin.equals(resPassword);
                 if (passwordIsRight) {
-                    Customer customer = new Customer(res);
-                    session.setAttribute("LoginCustomer",customer);
-                    customer.loginInitialize(request, response);
+                    String customerID = res.getString("userID");
+                    Helper.loginedCustomer(request,customerID);
 
                     nextURL = "/bookOnline/Index.jsp";
                     message = "登录成功!欢迎您!即将为你跳转至主页。";
@@ -55,7 +55,6 @@ public class Login extends HttpServlet {
         request.setAttribute("nextURL",nextURL);
         request.setAttribute("intermediateTimer",3);
         request.setAttribute("message",message);
-
         RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
         rd.forward(request, response);
 

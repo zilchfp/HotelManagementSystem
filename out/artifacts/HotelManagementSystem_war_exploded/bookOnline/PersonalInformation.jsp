@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="entity.Customer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="DrawerBar.html"></jsp:include>
-<!-- 首屏 -->
+
 <div class="mdui-container doc-container" style="display: flex;flex-direction: column;">
     <h1>
         个人信息
@@ -16,14 +17,12 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="orders" items="${requestScope.CustomerOrdersQueryResult}"
-                       varStatus="status" >
+            <jsp:useBean id="LoginedCustomer" scope="session" type="entity.Customer"></jsp:useBean>
                 <tr>
-                    <td>${sessionScope.LoginCustomer.userID}</td>
-                    <td>${sessionScope.LoginCustomer.username}</td>
-                    <td>${sessionScope.LoginCustomer.IDNumber}</td>
+                    <td><jsp:getProperty name="LoginedCustomer" property="userID"></jsp:getProperty></td>
+                    <td><jsp:getProperty name="LoginedCustomer" property="customerName"></jsp:getProperty></td>
+                    <td><jsp:getProperty name="LoginedCustomer" property="IDNumber"></jsp:getProperty></td>
                 </tr>
-            </c:forEach>
             </tbody>
         </table>
     </div>

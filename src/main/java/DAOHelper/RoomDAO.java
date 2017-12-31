@@ -1,6 +1,6 @@
 package DAOHelper;
 
-import entity.GeneralHelp;
+import entity.Helper;
 import entity.Room;
 
 import java.sql.Connection;
@@ -30,10 +30,10 @@ public class RoomDAO {
     //***************************************************************
     public boolean addNewRoom() throws SQLException {
         String sql = "insert into Room values (?,?,?,?,?,?,?);";
-        this.setID(GeneralHelp.getRandomUserID());
+        this.setID(Helper.getRandomUserID());
         Vector<String> attributeList = this.getAttributeList();
         PreparedStatement stm = connection.prepareStatement(sql);
-        Helper.addStrings(stm, attributeList);
+        DAOHelper.Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
         return true;
     }
@@ -52,7 +52,7 @@ public class RoomDAO {
     //***************************************************************
     public ResultSet query(String sql) throws SQLException {
         Vector<String> attributeList = this.getAttributeList();
-        return Helper.getResult(connection, attributeList, sql);
+        return DAOHelper.Helper.getResult(connection, attributeList, sql);
     }
     public Room roomQueryByID(String roomID) throws SQLException {
         String sql = "select * from Room where ID=?";
@@ -104,7 +104,7 @@ public class RoomDAO {
     public void update(String sql) throws SQLException {
         Vector<String> attributeList = getAttributeList();
         PreparedStatement stm = connection.prepareStatement(sql);
-        Helper.addStrings(stm, attributeList);
+        DAOHelper.Helper.addStrings(stm, attributeList);
         stm.executeUpdate();
     }
     public boolean updateRoomInformation(Room room) throws SQLException {

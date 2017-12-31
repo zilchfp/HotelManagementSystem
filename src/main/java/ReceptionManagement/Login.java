@@ -2,7 +2,7 @@ package ReceptionManagement;
 
 import DAOHelper.DBHGeneral;
 import DAOHelper.ReceptionistDAO;
-import entity.GeneralHelp;
+import entity.Helper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 
         if (LoginSuccessfully) {
             try {
-                GeneralHelp.loginInitializatjion(request);
+                Helper.loginInitializatjion(request);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -1,6 +1,5 @@
 import DAOHelper.DBHGeneral;
 import DAOHelper.RoomDAO;
-import entity.GeneralHelp;
 import entity.Room;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-
-import static java.lang.System.out;
 
 @WebServlet(name = "RoomInformationUpdate",urlPatterns = "/basicSetting/RoomInformationUpdate.do")
 public class RoomInformationUpdate extends HttpServlet {

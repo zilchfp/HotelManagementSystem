@@ -1,13 +1,10 @@
 package DAOHelper;
 
 import entity.Customer;
-import entity.GeneralHelp;
+import entity.Helper;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 import static java.lang.System.out;
 
@@ -33,7 +30,7 @@ public class CustomerDAO {
     //增
     public boolean addCustomer(Customer c) throws SQLException {
         if (c.getUserID() == null) {
-            this.userID = GeneralHelp.getRandomUserID();
+            this.userID = Helper.getRandomUserID();
         } else {
             this.userID = c.getUserID();  //For TestCase
         }
@@ -67,13 +64,13 @@ public class CustomerDAO {
         this.username = username;
         String sql = "select * from Customer where username = ?";
         Vector<String> attributeList = getAttributeList();
-        return Helper.getResult(connection, attributeList, sql);
+        return DAOHelper.Helper.getResult(connection, attributeList, sql);
     }
     public Customer queryByUserID(String userID) throws SQLException {
         this.userID = userID;
         String sql = "select * from Customer where userID = ?";
         Vector<String> attributeList = getAttributeList();
-        ResultSet r = Helper.getResult(connection, attributeList, sql);
+        ResultSet r = DAOHelper.Helper.getResult(connection, attributeList, sql);
         Customer c = new Customer();
         boolean isEmpty = true;
         while (r.next()) {
@@ -90,7 +87,7 @@ public class CustomerDAO {
     public ResultSet getAllCustomers() throws SQLException {
         String sql = "select * from Customer";
         Vector<String> attributeList = getAttributeList();
-        return Helper.getResult(connection, attributeList, sql);
+        return DAOHelper.Helper.getResult(connection, attributeList, sql);
     }
     public ArrayList<String> getAllCustomersID() throws SQLException {
         String sql = "select userID from Customer";
@@ -110,7 +107,7 @@ public class CustomerDAO {
                     "where (Orders.status='在住') and (dateEnd >= ?)" +
                     "order by userID";
         PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setString(1,Helper.getToday());
+        stm.setString(1, DAOHelper.Helper.getToday());
         return stm.executeQuery();
     }
     public HashMap<String,Integer> getUnavailableRoomTypeWithNumber() throws SQLException {
@@ -121,7 +118,7 @@ public class CustomerDAO {
                     "where Orders.status='在住' and dateEnd >= ? " +
                     "group by type;";
         PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setString(1,Helper.getToday());
+        stm.setString(1, DAOHelper.Helper.getToday());
         ResultSet resultSet = stm.executeQuery();
         HashMap<String,Integer> map = new HashMap<>();
         while (resultSet.next()) {

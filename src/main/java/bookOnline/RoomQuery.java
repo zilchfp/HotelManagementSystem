@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,8 +23,10 @@ import static java.lang.System.out;
 public class RoomQuery extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Date formate : "yyyy-mm-dd"
+        HttpSession session = request.getSession();
         String dateBegin = request.getParameter("dateBegin");
         String dateEnd = request.getParameter("dateEnd");
+
 
         //Check the validation of the range of date
         if (dateBegin.compareTo(dateEnd) > 0) {
@@ -36,6 +39,9 @@ public class RoomQuery extends HttpServlet {
             request.setAttribute("message",message);
             RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
             rd.forward(request, response);
+        } else {
+            session.setAttribute("dateBegin",dateBegin);
+            session.setAttribute("dateEnd",dateEnd);
         }
 
         //QueryRoom

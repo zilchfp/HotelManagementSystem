@@ -1,17 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="DrawerBar.html"></jsp:include>
-<!-- 首屏 -->
-<div class="mdui-container doc-container" style="display: flex;flex-direction: column;">
-    <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
-        <h1>
-            订单详情
-        </h1>
 
-        预定以下房间：
-
-
+<form action="/bookOnline/SubmitOrder.do" method="get">
+    <div class="mdui-container doc-container">
+        <div class="mdui-container main-container" >
+            <h1>
+                订单详情
+            </h1>
+            房间类型：${sessionScope.type}
+            <br>
+            房间价格（元）：${sessionScope.price}
+            <br>
+            入住时间：${sessionScope.dateBegin}
+            <br>
+            退房时间：${sessionScope.dateEnd}
+            <br>
+            <jsp:useBean id="LoginedCustomer" scope="session" type="entity.Customer"></jsp:useBean>
+            客户ID：<jsp:getProperty name="LoginedCustomer" property="userID"></jsp:getProperty>
+            <br>
+            客户姓名：<jsp:getProperty name="LoginedCustomer" property="customerName"></jsp:getProperty>
+            <br>
+            客户身份证号码：<jsp:getProperty name="LoginedCustomer" property="IDNumber"></jsp:getProperty>
+            <br>
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" >确认预定</button>
+        </div>
     </div>
-</div>
+</form>
 
 <script type="text/javascript">
     //p for parent bar
