@@ -16,7 +16,7 @@
             </c:forEach>
         </select>
         <br>
-        续住日期：<input type="date" value="datetime-local" name="DateEndExtend"/>
+        续住日期：<input type="date" value="datetime-local" name="DateEndExtend" required/>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </div>

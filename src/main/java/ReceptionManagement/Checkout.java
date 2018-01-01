@@ -1,5 +1,6 @@
 package ReceptionManagement;
 
+import entity.Bill;
 import entity.Receptionist;
 
 import javax.servlet.RequestDispatcher;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -17,19 +19,36 @@ import static java.lang.System.out;
 public class Checkout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String RoomID = request.getParameter("checkoutRoomID");
+        HttpSession session = request.getSession();
         out.println(RoomID);
         boolean checkoutSuccessfully = false;
         String message,nextURL;
         Receptionist receptionist = new Receptionist();
+//        try {
+//            if (true) {
+//                checkoutSuccessfully = true;
+//                String OrderID = "999";
+//                Bill bill = receptionist.calculateBillByOrderID(OrderID);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
         try {
-            if (true) {
-                checkoutSuccessfully = true;
-                String OrderID = "999";
-                receptionist.calculateBillByOrderID(OrderID);
+            Bill bill = receptionist.getBillByRoomID(RoomID);
+            if (bill != null) {
+                String orderID = bill.getOrderID();
+                boolean updateRoomStatusSuccessfully = receptionist.roomCheckout(RoomID);
+                boolean dateEndMakesure = receptionist.updateOrderInformationByOrderID(orderID);
+                boolean calculateAccount = receptionist.calculateBillByOrderID(orderID);
+                checkoutSuccessfully = updateRoomStatusSuccessfully && dateEndMakesure && calculateAccount;
+                session.setAttribute("checkoutBill",bill);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 
         if (checkoutSuccessfully) {
                 message = "退房成功！ 3秒后显示账单。";

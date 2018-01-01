@@ -1,8 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <jsp:include page="DrawerBar.html"></jsp:include>
-<%--Context--%>
+
 <div class="mdui-container main-container mdui-text-left">
     <h1>
         请输入退房的房间编号

@@ -18,20 +18,24 @@ public class RoomExtend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderIDExtend = request.getParameter("orderIDExtend");
         String DateEndExtend = request.getParameter("DateEndExtend");
-        out.println(DateEndExtend);
-        Receptionist receptionist = new Receptionist();
-        boolean extendSuccessfully = false;
-        try {
-            extendSuccessfully = receptionist.extendCheckoutTimeByOrderID(orderIDExtend,DateEndExtend);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         String nextURL, message;
-        if (extendSuccessfully) {
-            message = "续住成功! 3秒后跳转至续住管理界面";
+        boolean extendSuccessfully = false;
+
+        if (DateEndExtend != null) {
+            Receptionist receptionist = new Receptionist();
+            try {
+                extendSuccessfully = receptionist.extendCheckoutTimeByOrderID(orderIDExtend,DateEndExtend);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if (extendSuccessfully) {
+                message = "续住成功! 3秒后跳转至续住管理界面";
+            } else {
+                message = "续住失败! 请重试! 3秒后跳转至续住管理界面";
+            }
         } else {
-            message = "续住失败! 请重试! 3秒后跳转至续住管理界面";
+            message = "请选择";
         }
         nextURL = "/receptionManagement/RoomExtend.jsp";
         request.setAttribute("nextURL",nextURL);
