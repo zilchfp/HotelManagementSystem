@@ -7,7 +7,7 @@
     <h1>
         请选择要入住的订单ID
     </h1>
-    <form action="/ReceptionManagement/PreservationCheckin" method="post">
+    <form action="/ReceptionManagement/PreservationCheckinRoomQuery.do" method="post">
         订单ID：
         <select class="mdui-select" id="roomTypeSelect" name="orderIDCheckin">
             <c:forEach var="ordersID" items="${sessionScope.AllOrdersID}"

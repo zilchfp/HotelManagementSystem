@@ -116,6 +116,30 @@ public class RoomDAO {
         }
         return ans;
     }
+    public ArrayList<Room> getAvailableRoomByOrdersID(String orderID) throws SQLException {
+        String sql = "select Room.ID,Room.number,Room.type,Room.floor,Room.direction,Room.description,Room.status " +
+                        "from Room " +
+                        "left join Orders " +
+                        "on Orders.type = Room.type " +
+                        "where Orders.OrderID = ? and Room.status='可用' ";
+        PreparedStatement stm  = connection.prepareStatement(sql);
+        stm.setString(1,orderID);
+        ResultSet r = stm.executeQuery();
+        ArrayList<Room> ans = new ArrayList<>();
+        while (r.next()) {
+            Room room = new Room();
+            room.setID(r.getString("ID"));
+            room.setNumber(r.getString("number"));
+            room.setType(r.getString("type"));
+            room.setFloor(r.getString("floor"));
+            room.setDirection(r.getString("direction"));
+            room.setDescription(r.getString("description"));
+            room.setStatus(r.getString("status"));
+            ans.add(room);
+        }
+        return  ans;
+
+    }
 
     //***************************************************************
     //修改

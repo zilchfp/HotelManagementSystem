@@ -21,9 +21,6 @@ public class RoomQueryResultChosen extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String chosedRoomType = request.getParameter("booked");
-        out.println(chosedRoomType);
-        chosedRoomType = "标准间";
-
         try {
             RoomCategoryDAO roomCategoryDAO = new RoomCategoryDAO();
             HashMap<String,Double> typeAndPrice = roomCategoryDAO.getTypeAndPrice();

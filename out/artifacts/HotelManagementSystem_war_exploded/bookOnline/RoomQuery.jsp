@@ -4,21 +4,21 @@
 <div class="mdui-container doc-container" style="display: flex;flex-direction: column;">
     <div class="mdui-container main-container" style="display: flex;flex-direction: column;justify-content: center;">
         <form action="/bookOnline/RoomQuery.do" method="post">
-        <h1>请输入起始时间</h1>
-        <br>
-        入住日期：<input type="date" value="datetime-local" id="dateBeginID" name="dateBegin" min="today"/>
-        <br>
-        离店日期：<input type="date" value="datetime-local" name="dateEnd"/>
-        <br>
-        <br>
-        <input type="submit" value="查询">
+            <h1>请输入起始时间</h1>
+            <br>
+            入住日期：<input type="date" value="datetime-local" id="dateBeginID" name="dateBegin" min="today"/>
+            <br>
+            离店日期：<input type="date" value="datetime-local" name="dateEnd"/>
+            <br>
+            <br>
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">查询</button>
         </form>
     </div>
 </div>
 
 <script type="text/javascript">
     //限制入住日期从今天开始
-    //document.getElementById("dateBeginID").setAttribute("min",new Date().toISOString().substring(0, 10));
+    document.getElementById("dateBeginID").setAttribute("min",new Date().toISOString().substring(0, 10));
 </script>
 
 

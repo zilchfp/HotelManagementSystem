@@ -28,7 +28,7 @@
                             <td>${allType.value}</td>
                             <td>
                                 <label class="mdui-radio">
-                                <input id="bookChooseButton" type="radio" name="booked"/>
+                                <input id="bookChooseButton" type="radio" name="booked" value=${allType.key}>
                                     <i class="mdui-radio-icon"></i>
                                 </label>
                             </td>

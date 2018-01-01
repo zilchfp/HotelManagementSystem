@@ -5,6 +5,7 @@ import DAOHelper.OrdersDAO;
 import DAOHelper.RoomDAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Receptionist {
     private String ID;
@@ -19,6 +20,12 @@ public class Receptionist {
         OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
         ordersDBH.updateStatusByOrderID(orderID,"在住");
     }
+
+    public ArrayList<Room> preservationCheckinRoomQuery(String orderID) throws SQLException {
+        RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
+        return roomDAO.getAvailableRoomByOrdersID(orderID);
+    }
+
     public boolean roomCheckout(String roomID) throws SQLException {
         RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
         return roomDAO.updateStatusByRoomID(roomID, "可用");
