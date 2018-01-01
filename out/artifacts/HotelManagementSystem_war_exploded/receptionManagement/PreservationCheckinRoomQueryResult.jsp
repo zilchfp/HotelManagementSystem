@@ -34,7 +34,7 @@
                         <td>${room.status}</td>
                         <td>
                             <label class="mdui-radio">
-                                <input id="bookChooseButton" type="radio" name="booked"/>
+                                <input id="bookChooseButton" type="radio" name="bookedRoomID" value=${room.ID}>
                                 <i class="mdui-radio-icon"></i>
                             </label>
                         </td>
@@ -52,6 +52,10 @@
 
 </div>
 
+<script type="text/javascript">
+
+
+</script>
 
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">

@@ -184,6 +184,16 @@ public class OrdersDAO {
         return (n == 0 ? false : true);
     }
 
+    public boolean updateRoomIDByOrderID(String OrderID, String newRoomID) throws SQLException {
+        String sql = "update Orders set roomID=? where OrderID=?;";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,newRoomID);
+        stm.setString(2,OrderID);
+        int a = stm.executeUpdate();
+        return (a == 0 ? false : true);
+    }
+
+
 
     public boolean singleUpdate(String setAttribute, String setValue,
                                 String whereAttribute, String whereValue) throws SQLException {

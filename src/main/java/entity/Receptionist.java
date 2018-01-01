@@ -16,9 +16,11 @@ public class Receptionist {
 
 
     //前台管理
-    public void preservationCheckin(String orderID) throws SQLException {
-        OrdersDAO ordersDBH = new OrdersDAO(DBHGeneral.getConnection());
-        ordersDBH.updateStatusByOrderID(orderID,"在住");
+    public boolean preservationCheckin(String orderID, String roomID) throws SQLException {
+        OrdersDAO ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
+        boolean updateStatusSuccessfully = ordersDAO.updateStatusByOrderID(orderID,"在住");
+        boolean updateRoomIDSuccessfully = ordersDAO.updateRoomIDByOrderID(orderID,roomID);
+        return (updateRoomIDSuccessfully && updateStatusSuccessfully);
     }
 
     public ArrayList<Room> preservationCheckinRoomQuery(String orderID) throws SQLException {
