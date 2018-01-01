@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -9,14 +10,19 @@
         <h1>
         接待员账号修改
         </h1>
-        请输入要修改的接待员账号ID:
-        <form action="/basicSetting/ReceptionistAccountModify.do" method="post" >
-        ID: <input type="text" size="10" name="receptionistIDDelete" required>
-        姓名: <input type="text" size="10" name="receptionistIDDelete" required>
-        性别: <input type="text" size="10" name="receptionistIDDelete" required>
-        <input type="submit" value="提交">
-        <br>
+        请选择要修改的接待员账号ID:
+        <form action="" method="post">
+            接待员账号ID:
+            <select class="mdui-select" id="roomTypeSelect" name="modifyReceptionistID">
+                <c:forEach var="receptionistID" items="${sessionScope.AllReceptionistID}"
+                           varStatus="status" >
+                    <option>${receptionistID}</option>
+                </c:forEach>
+            </select>
+
+            <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
         </form>
+        <br>
     </div>
 
 </div>

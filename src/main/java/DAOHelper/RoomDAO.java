@@ -97,6 +97,25 @@ public class RoomDAO {
         }
         return ans;
     }
+    public ArrayList<Room> getAllRoomByType(String type) throws SQLException {
+        String sql= "SELECT * FROM Room WHERE type = ? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,type);
+        ResultSet r = stm.executeQuery();
+        ArrayList<Room> ans = new ArrayList<>();
+        while (r.next()) {
+            Room room = new Room();
+            room.setID(r.getString("ID"));
+            room.setNumber(r.getString("number"));
+            room.setType(r.getString("type"));
+            room.setFloor(r.getString("floor"));
+            room.setDirection(r.getString("direction"));
+            room.setDescription(r.getString("description"));
+            room.setStatus(r.getString("status"));
+            ans.add(room);
+        }
+        return ans;
+    }
 
     //***************************************************************
     //修改

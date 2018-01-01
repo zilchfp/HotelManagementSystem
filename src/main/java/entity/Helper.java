@@ -1,9 +1,6 @@
 package entity;
 
-import DAOHelper.CustomerDAO;
-import DAOHelper.DBHGeneral;
-import DAOHelper.OrdersDAO;
-import DAOHelper.RoomDAO;
+import DAOHelper.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,6 +32,17 @@ public class Helper {
         RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
         ArrayList<String> arrayListAllRoomID = roomDAO.getAllRoomID();
         session.setAttribute("AllRoomID",arrayListAllRoomID);
+
+        RoomCategoryDAO roomCategoryDAO = new RoomCategoryDAO();
+        ArrayList<String> arrayListAllRoomType = roomCategoryDAO.getAllCategory();
+        session.setAttribute("AllRoomType",arrayListAllRoomType);
+
+
+        ReceptionistDAO receptionistDAO = new ReceptionistDAO(DBHGeneral.getConnection());
+        ArrayList<String> arrayListReceptionistID = receptionistDAO.getAllReceptionistID();
+        session.setAttribute("AllReceptionistID",arrayListReceptionistID);
+
+
 
     }
 //TODO  需要检测生成的ID是否已经在表中

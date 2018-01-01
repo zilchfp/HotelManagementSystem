@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -5,13 +6,17 @@
 <%--Context--%>
 <div class="mdui-container main-container mdui-text-left">
     <h1>
-        请输入要删除的接待员账号ID
+        请选择要删除的接待员账号ID
     </h1>
-    <form action="/basicSetting/ReceptionistAccountDelete.do" method="post" >
-        <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">ID</label>
-            <input type="text"  class="mdui-textfield-input" size="10" name="receptionistIDDelete"/>
-        </div>
+    <form action="/basicSetting/ReceptionistAccountDelete.do" method="post">
+        接待员账号ID:
+        <select class="mdui-select" id="roomTypeSelect" name="addReceptionistID">
+            <c:forEach var="receptionistID" items="${sessionScope.AllReceptionistID}"
+                       varStatus="status" >
+                <option>${receptionistID}</option>
+            </c:forEach>
+        </select>
+
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </div>

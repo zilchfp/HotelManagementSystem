@@ -1,6 +1,7 @@
 package basicSetting;
 
 import DAOHelper.*;
+import entity.Helper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,20 +42,8 @@ public class ManagerLogin extends HttpServlet {
             nextURL = "/basicSetting/Index.jsp";
 
             //对一些会话期间的参数进行初始化
-            CustomerDAO customerDAO = null;
             try {
-                customerDAO = new CustomerDAO();
-                ArrayList<String> arrayListAllCustomerID =  customerDAO.getAllCustomersID();
-                session.setAttribute("AllCustomerID",arrayListAllCustomerID);
-
-                OrdersDAO ordersDAO = new OrdersDAO(DBHGeneral.getConnection());
-                ArrayList<String> arrayListAllOrdersID =  ordersDAO.getAllOrdersID();
-                session.setAttribute("AllOrdersID",arrayListAllOrdersID);
-
-                RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
-                ArrayList<String> arrayListAllRoomID = roomDAO.getAllRoomID();
-                session.setAttribute("AllRoomID",arrayListAllRoomID);
-
+                Helper.loginInitializatjion(request);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

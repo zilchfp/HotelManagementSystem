@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import static java.lang.System.out;
@@ -24,13 +25,13 @@ public class ReceptionistDAO {
         return Helper.getResult(connection, attributeList, sql);
     }
 
-    public void Delete(String ReceptionistID) throws SQLException {
+    public boolean DeleteByID(String ReceptionistID) throws SQLException {
         this.setID(ReceptionistID);
-        Vector<String> attributeList = getAttributeList();
-        String sql = "delete from Receptionist where ID = ?";
+        String sql = "delete from Receptionist WHERE ID = ? ;";
         PreparedStatement stm = connection.prepareStatement(sql);
-        Helper.addStrings(stm, attributeList);
-        stm.execute();
+        stm.setString(1,ReceptionistID);
+        int n = stm.executeUpdate();
+        return (n == 0 ? false:true);
     }
 
     public void Modify(String ReceptionistID) throws SQLException {
@@ -87,6 +88,17 @@ public class ReceptionistDAO {
         stm.setString(2,password);
         return stm.executeQuery();
     };
+
+    public ArrayList<String> getAllReceptionistID() throws SQLException {
+        String sql = "SELECT  ID from Receptionist ORDER  BY ID ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        ResultSet r = stm.executeQuery();
+        ArrayList<String> ans = new ArrayList<>();
+        while (r.next()) {
+            ans.add(r.getString(1));
+        }
+        return  ans;
+    }
 
     //改
     public void updateWholeReceptionistByID(String receptionistID) throws SQLException {
