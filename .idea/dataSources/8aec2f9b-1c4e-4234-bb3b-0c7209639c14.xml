@@ -230,7 +230,12 @@
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="63" parent="17" name="PRIMARY">
+    <column id="63" parent="17" name="inuseRoomNumber">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="64" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <Primary>1</Primary>

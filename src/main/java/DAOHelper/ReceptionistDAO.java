@@ -45,15 +45,25 @@ public class ReceptionistDAO {
 
     //数据库的增删查改
     //增
-    public void addReceptionist(Receptionist receptionist) throws SQLException {
-        this.ID = receptionist.getID();
+    public boolean addReceptionist(Receptionist receptionist) throws SQLException {
+        if (receptionist.getID() == null) {
+            this.ID = entity.Helper.getRandomUserID();
+        } else {
+            this.ID = receptionist.getID();
+        }
         this.name = receptionist.getName();
         this.gender = receptionist.getName();
         this.username = receptionist.getUsername();
         this.password = receptionist.getPassword();
-        String sql = "insert into Receptionist values (?,?,?,?,?)";
-        Vector<String> attributeList = getAttributeList();
-        Helper.execute(connection, attributeList, sql);
+        String sql = "insert into Receptionist values (?,?,?,?,?) ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1,this.ID);
+        stm.setString(2,this.name);
+        stm.setString(3,this.gender);
+        stm.setString(4,this.username);
+        stm.setString(5,this.password);
+        int n = stm.executeUpdate();
+        return (n == 0 ? false : true);
     }
 
     //删

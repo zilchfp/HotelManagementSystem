@@ -21,7 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="allType" items="${requestScope.AvailableQueryResult}"
+                    <c:forEach var="allType" items="${sessionScope.AvailableQueryResult}"
                                varStatus="status" >
                         <tr>
                             <td>${allType.key}</td>

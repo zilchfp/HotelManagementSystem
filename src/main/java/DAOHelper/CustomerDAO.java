@@ -110,17 +110,32 @@ public class CustomerDAO {
         stm.setString(1, DAOHelper.Helper.getToday());
         return stm.executeQuery();
     }
-    public HashMap<String,Integer> getUnavailableRoomTypeWithNumber() throws SQLException {
-        String sql ="select type,COUNT(roomID) as number " +
+    public HashMap<String,Integer> getUnavailableRoomTypeWithNumber(String dataBegin, String dateEnd) throws SQLException {
+        String sql = "select type,COUNT(OrderID) as number " +
                     "from Customer " +
                     "left join Orders " +
                     "on Customer.userID = Orders.customerID " +
-                    "where Orders.status='在住' and dateEnd >= ? " +
-                    "group by type;";
+                    "where  (Orders.status='在住' OR Orders.status='预定') AND " +
+                "( (dateBegin <= ? AND dateEnd >= ?) OR  " +
+                "  (dateBegin <= ? AND dateEnd >= ?) OR " +
+                "  (dateBegin <= ? AND dateEnd >= ?) OR " +
+                "  (dateBegin <= ? AND dateEnd >= ?)) " +
+                "   group by type ";
         PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setString(1, DAOHelper.Helper.getToday());
+
+        stm.setString(1, dataBegin);
+        stm.setString(2, dataBegin);
+        stm.setString(3, dateEnd);
+        stm.setString(4, dateEnd);
+        stm.setString(5, dataBegin);
+        stm.setString(6, dateEnd);
+        stm.setString(7, dateEnd);
+        stm.setString(8, dataBegin);
+
+
         ResultSet resultSet = stm.executeQuery();
         HashMap<String,Integer> map = new HashMap<>();
+
         while (resultSet.next()) {
             String type = resultSet.getString(1);
             int num = resultSet.getInt(2);

@@ -21,6 +21,19 @@ public class RoomQueryResultChosen extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String chosedRoomType = request.getParameter("booked");
+        String message,nextURL;
+        HashMap<String,Integer> AvailableQueryResult = (HashMap<String, Integer>) session.getAttribute("AvailableQueryResult");
+        int numChosed = AvailableQueryResult.get(chosedRoomType);
+        if (numChosed == 0) {
+            message = "该房间类型已售空，请选择其他类型的房间，3秒后返回可用房间查询界面。";
+            nextURL = "/bookOnline/RoomQuery.jsp";
+            request.setAttribute("nextURL",nextURL);
+            request.setAttribute("intermediateTimer",3);
+            request.setAttribute("message",message);
+            RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
+            rd.forward(request, response);
+        }
+
         try {
             RoomCategoryDAO roomCategoryDAO = new RoomCategoryDAO();
             HashMap<String,Double> typeAndPrice = roomCategoryDAO.getTypeAndPrice();

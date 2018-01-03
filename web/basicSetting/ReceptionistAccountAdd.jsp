@@ -5,15 +5,28 @@
 <%--Context--%>
 <div class="mdui-container main-container mdui-text-left">
     <h1>
-        请输入要增加的接待员账号ID:
+        请输入要增加的接待员信息
     </h1>
     <form action="/basicSetting/ReceptionistAccountAdd.do" method="post" >
         <div class="mdui-textfield mdui-textfield-floating-label">
-            <label class="mdui-textfield-label">ID</label>
-            <input type="text"  class="mdui-textfield-input" size="10" name="receptionistIDAdd"/>
+            <label class="mdui-textfield-label">接待员账号名</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="receptionistUsernameAdd"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">接待员密码</label>
+            <input type="password"  class="mdui-textfield-input" size="10" name="receptionistPasswordAdd"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">接待员姓名</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="receptionistNameAdd"/>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">接待员性别</label>
+            <input type="text"  class="mdui-textfield-input" size="10" name="receptionistGenderAdd"/>
         </div>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
+
 </div>
 
 <script src="../MDUI_files/mdui.min.js"></script>

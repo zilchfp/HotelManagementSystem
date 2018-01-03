@@ -27,10 +27,9 @@ public class RoomQuery extends HttpServlet {
         String dateBegin = request.getParameter("dateBegin");
         String dateEnd = request.getParameter("dateEnd");
 
-
         //Check the validation of the range of date
         if (dateBegin.compareTo(dateEnd) > 0) {
-            String nextURL = null, message = null;
+            String nextURL, message;
             nextURL = "/bookOnline/RoomQuery.jsp";
             message = "输入日期范围非法！ 请重新输入！ 3秒后跳转回可用房查询界面";
 
@@ -45,7 +44,7 @@ public class RoomQuery extends HttpServlet {
         }
 
         //QueryRoom
-        Connection connection = null;
+        Connection connection;
         try {
             connection = DBHGeneral.getConnection();
             RoomDAO roomDAO = new RoomDAO(connection);
@@ -54,7 +53,14 @@ public class RoomQuery extends HttpServlet {
 
             //因为顾客与在住房间一一对应,故通过客户表获得在住的不可用的各类型的房间数量
             CustomerDAO customerDAO = new CustomerDAO();
-            HashMap<String, Integer> unavailableNumberofType =customerDAO.getUnavailableRoomTypeWithNumber();
+            HashMap<String, Integer> unavailableNumberofType =customerDAO.getUnavailableRoomTypeWithNumber(dateBegin,dateEnd);
+
+            out.println("unuseable");
+            for (Map.Entry<String, Integer> entry : unavailableNumberofType.entrySet()) {
+                String type = entry.getKey();
+                Integer num = entry.getValue();
+               out.println("type"+type+"   num:"+num);
+            }
 
             //用各类型的总房间数减去该时间段各类型不可用的房间数,即可求出该时间段各类型可用的房间数
             for (Map.Entry<String, Integer> entry : unavailableNumberofType.entrySet()) {
@@ -64,7 +70,7 @@ public class RoomQuery extends HttpServlet {
                     originalNumberOfType.put(type, originalNumberOfType.get(type) - num);
                 }
             }
-            request.setAttribute("AvailableQueryResult",originalNumberOfType);
+            session.setAttribute("AvailableQueryResult",originalNumberOfType);
         } catch (SQLException e) {
             e.printStackTrace();
         }

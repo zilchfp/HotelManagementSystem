@@ -37,9 +37,9 @@ public class Helper {
     }
 
     public static String getToday() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
-        return dateFormat.format(date); //2016/11/16 12:08:43
+        return dateFormat.format(date); //2016-11-16
     }
 
 }

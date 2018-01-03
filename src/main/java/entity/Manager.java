@@ -2,6 +2,7 @@ package entity;
 
 import DAOHelper.CustomerDAO;
 import DAOHelper.DBHGeneral;
+import DAOHelper.ReceptionistDAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,7 +28,8 @@ public class Manager {
 
     }
 
-    public void addReceptionist() {
-
+    public boolean addReceptionist(Receptionist receptionist) throws SQLException {
+        ReceptionistDAO receptionistDAO = new ReceptionistDAO(DBHGeneral.getConnection());
+        return receptionistDAO.addReceptionist(receptionist);
     }
 }
