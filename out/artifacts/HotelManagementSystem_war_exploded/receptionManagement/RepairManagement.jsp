@@ -1,6 +1,39 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="DrawerBar.html"></jsp:include>
+
+
+<div class="mdui-container main-container mdui-text-left">
+    <h1>
+        请选择要维修的房间ID号码
+    </h1>
+    <form action="/ReceptionManagement/RoomRepair.do" method="post" >
+        房间ID:
+        <select class="mdui-select"  name="roomRepairOfRoomID">
+            <c:forEach var="roomID" items="${sessionScope.AllRoomID}"
+                       varStatus="status" >
+                <option>${roomID}</option>
+            </c:forEach>
+        </select>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
+<br>
+    <h1>
+        请选择维修完成的房间ID号码
+    </h1>
+    <form action="/ReceptionManagement/RoomRepairDone.do" method="post" >
+        房间ID:
+        <select class="mdui-select"  name="roomRepairDoneOfRoomID">
+            <c:forEach var="roomID" items="${sessionScope.AllRoomID}"
+                       varStatus="status" >
+                <option>${roomID}</option>
+            </c:forEach>
+        </select>
+        <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
+    </form>
+</div>
+
 
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">

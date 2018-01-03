@@ -101,14 +101,14 @@ public class Receptionist {
         return ordersDBH.updateDateEndByOrderID(OrderID, newDateEnd);
     }
 
-    public void fixingRoomByRoomID(String roomID) throws SQLException {
+    public boolean fixingRoomByRoomID(String roomID) throws SQLException {
         RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
-        roomDAO.updateStatusByRoomID(roomID,"FIXING");
+        return roomDAO.updateStatusByRoomID(roomID,"维修中");
     }
 
-    public void fixDoneByRoomID(String roomID) throws SQLException {
+    public boolean fixDoneByRoomID(String roomID) throws SQLException {
         RoomDAO roomDAO = new RoomDAO(DBHGeneral.getConnection());
-        roomDAO.updateStatusByRoomID(roomID,"AVAILABLE");
+        return  roomDAO.updateStatusByRoomID(roomID,"可用");
     }
 
 
