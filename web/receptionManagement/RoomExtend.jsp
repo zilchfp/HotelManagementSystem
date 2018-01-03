@@ -16,11 +16,15 @@
             </c:forEach>
         </select>
         <br>
-        续住日期：<input type="date" value="datetime-local" name="DateEndExtend" required/>
+        续住日期：<input type="date" value="datetime-local" id="DateEndExtend" name="DateEndExtend" min="today" required/>
         <button type="submit" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">提交</button>
     </form>
 </div>
 
+<script type="text/javascript">
+    //限制入住日期从今天开始
+    document.getElementById("DateEndExtend").setAttribute("min",new Date().toISOString().substring(0, 10));
+</script>
 
 <script src="../MDUI_files/mdui.min.js"></script>
 <script type="text/javascript">
