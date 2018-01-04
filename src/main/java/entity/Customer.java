@@ -57,11 +57,10 @@ public class Customer {
     }
 
 
-    public void register() throws SQLException {
+    public boolean register() throws SQLException {
         Connection connection = DBHGeneral.getConnection();
         CustomerDAO customerDAO = new CustomerDAO();
-        customerDAO.addCustomer(this);
-        connection.close();
+        return customerDAO.addCustomer(this);
     }
 
     public void remove() throws SQLException {

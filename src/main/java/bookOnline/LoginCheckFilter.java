@@ -26,7 +26,9 @@ public class LoginCheckFilter implements Filter {
         String requestPath = request.getServletPath();
         if (loginedCustomer != null
                 || requestPath.endsWith("Login")
-                || requestPath.endsWith("Login.do")) {
+                || requestPath.endsWith("Login.do")
+                || requestPath.endsWith("Register.jsp")
+                || requestPath.endsWith("Register.do")) {
             chain.doFilter(req, resp);
         } else {
             String nextURL,message;

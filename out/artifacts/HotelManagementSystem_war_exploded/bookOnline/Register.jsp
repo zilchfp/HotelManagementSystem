@@ -51,15 +51,15 @@
                         </td>
                     </tr>
                     <div class="mdui-textfield">
-                        账号<textarea class="mdui-textfield-input" placeholder="账号"></textarea>
+                        账号<textarea class="mdui-textfield-input" name="username" placeholder="账号"></textarea>
                     </div>
                     <div class="mdui-textfield">
-                        密码<textarea class="mdui-textfield-input" placeholder="密码"></textarea>
+                        密码<textarea class="mdui-textfield-input" name="password" placeholder="密码"></textarea>
                     </div>
 
                     <tr>
                     <div class="mdui-textfield">
-                        姓名<textarea class="mdui-textfield-input" placeholder="姓名"></textarea>
+                        姓名<textarea class="mdui-textfield-input" name="customerName" placeholder="姓名"></textarea>
                     </div>
 
                     <tr>
@@ -78,7 +78,9 @@
                     </div>
                     </tr>
                     <div class="mdui-textfield">
-                        身份证号码<textarea class="mdui-textfield-input" placeholder="身份证号码"></textarea>
+                        身份证号码
+                        <input class="mdui-textfield-input"  type="text" pattern="(^\d{15}$)|(^\d{17}([0-9]|X)$)" name="customerIDNumber" placeholder="身份证号码"/>
+                        <div class="mdui-textfield-error">身份证格式错误</div>
                     </div>
                     </tr>
 

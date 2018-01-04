@@ -11,25 +11,34 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static java.lang.System.out;
-
 @WebServlet("/bookOnline/Register.do")
 public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String customerIDNumber = request.getParameter("customerIDNumber");
+        String customerPassword = request.getParameter("password");
         String customerName = request.getParameter("customerName");
-        String customerID = request.getParameter("customerID");
-        String customerPassword = request.getParameter("customerPassword");
-
+        boolean registerSuccessfully = false;
+        String message,nextURL;
         try {
-            Customer customer = new Customer(customerName, customerPassword, customerID);
-            customer.register();
+            Customer customer = new Customer(username, customerPassword, customerIDNumber,customerName);
+            registerSuccessfully = customer.register();
         } catch (SQLException e) {
             e.printStackTrace();
-            out.println("注册失败");
         }
 
-        out.println("注册成功");
-        RequestDispatcher rd = request.getRequestDispatcher("/bookOnline/RegisterSuccess.jsp");
+        if (registerSuccessfully) {
+            message = "注册成功！ 3秒后返回登录界面！";
+            nextURL = "/CustomerLogin.jsp";
+        } else {
+            message = "注册失败！ 请重试！ 3秒后返回注册界面！";
+            nextURL = "/bookOnline/Register.jsp?";
+        }
+
+        request.setAttribute("nextURL",nextURL);
+        request.setAttribute("intermediateTimer",3);
+        request.setAttribute("message",message);
+        RequestDispatcher rd = request.getRequestDispatcher("/General/intermediatePage.jsp");
         rd.forward(request, response);
     }
 
