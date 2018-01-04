@@ -73,19 +73,19 @@
 ## 整体情况
 
 ## 整体架构
-## DAO层
+### DAO层
  - 主要包括：CustomerDAO、ManagerDAO、OrdersDAO、ReceptionistDAO、RoomDAO、RoomCategoryDAO
  - 对数据库中的关系表建立各自的DAO操作对象，封装相应的数据库操作
-## 业务逻辑层
+### 业务逻辑层
  - 业务逻辑层的相应操作封装在经理、接待员、顾客三个实体类中，以便控制模块更好地调用
 
 对于所采用的MVC架构模式，整个项目主要分成基础设置（basicSetting）、在线订房（bookOnline）、前台管理（ReceptionManagement）、实体类、DAO类五个部分。
-## Model层
+### Model层
  - 除了数据库表所对应的实体类，还有若干辅助类：如订单类Bill与页面跳转辅助类IntermediateRequestDispatcher
-## View层
+### View层
  - 主要由JSP静态页面构成
  - 含少量的JavaScript脚本对页面显示（如菜单栏）、下拉选择（下拉数据获取）等进行控制。
-## Controller层
+### Controller层
  - 与View层进行数据传递，并在Serverlet创建相应的实体类并调用对应的业务逻辑接口进行操作
 
 ### 前端部分
